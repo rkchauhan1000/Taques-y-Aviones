@@ -1,6 +1,9 @@
 
 package pkgfinal;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 public class Tanque extends Vehiculos {
 
 
@@ -82,6 +85,28 @@ public class Tanque extends Vehiculos {
         this.defensa = this.defensa + defensa;
         HP = HP + hp;
         PP = PP+pp;
+    }
+    @Override
+    public void imagen(int icono){
+        
+            //tanque
+            if(icono==1){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque1.jpg");
+            }else if(icono==2){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque2.jpg");
+            }else if(icono==3){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque3.jpg");
+            }else if(icono==4){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque4.jpg");
+            }else if(icono==5){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque5.jpg");
+            }else if(icono==6){
+                new ImageIcon("src/imagen/imagen.Tanques/tanque6.png");
+            }else {
+                new ImageIcon("src/imagen/imagen.Tanques/tanque7.jpg");
+            } 
+          
+            veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
     }
 
 }

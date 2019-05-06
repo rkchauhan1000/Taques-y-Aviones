@@ -1,14 +1,23 @@
 
 package pkgfinal;
 
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 
 public class Persona {
     
     String nombre;
     int oro;
     int numVehiculos;
+    Vehiculos vehTanque = new Tanque();
+    Vehiculos vehAvion  = new Avion();
+    int tipoveh;
+    int tipoIcono;
     //Arraylis de vehiculos
-    
+    ArrayList<Vehiculos> vehiculo= new ArrayList<>();
     //Arraylist de objetos
     
             
@@ -34,6 +43,24 @@ public class Persona {
         }else {
             System.out.println("Ya tines un nombre agregado");
         }
+    }
+    public void nuevoVehiculo(int tipo,int icono, String nick){
+        
+        if(tipo==1){
+            //Avion
+            vehAvion.nick_name(nick);
+            vehAvion.imagen(icono);
+            vehiculo.add(vehAvion);
+            
+        }else{
+            //tanque
+            vehTanque.nick_name(nick);
+            vehTanque.imagen(icono);
+            vehiculo.add(vehTanque);
+            
+        }
+        numVehiculos++;
+        
     }
 }
 

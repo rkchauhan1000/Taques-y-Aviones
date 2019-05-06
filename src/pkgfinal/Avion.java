@@ -1,6 +1,11 @@
 
 package pkgfinal;
 //Vehiculo de Tipo avion que hereda de Vehiculos
+
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 public class Avion extends Vehiculos {
 
 
@@ -85,5 +90,26 @@ public class Avion extends Vehiculos {
         this.defensa = this.defensa + defensa;
         HP = HP + hp;
         PP = PP+pp;
+    }
+    @Override
+    public void imagen(int icono){
+            //Avion
+            if(icono==1){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion1.jpg");
+            }else if(icono==2){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion2.jpg");
+            }else if(icono==3){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion3.png");
+            }else if(icono==4){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion4.jpg");
+            }else if(icono==5){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion5.jpg");
+            }else if(icono==6){
+                new ImageIcon("src/imagen/imagen.Aviones/Avion6.jpg");
+            }else {
+                new ImageIcon("src/imagen/imagen.Aviones/Avion7.jpg");
+            }
+            veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
+              
     }
 }

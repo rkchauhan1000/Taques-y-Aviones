@@ -1,6 +1,9 @@
 
 package pkgfinal;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 public abstract class Vehiculos {
    
     char simbolo;
@@ -19,6 +22,9 @@ public abstract class Vehiculos {
     int HP;
     int PP;
     String nickName;
+    
+    ImageIcon vehh;
+    Icon veht;
 
     //Metodos abstractos
     public abstract void nick_name(String nick);
@@ -35,4 +41,5 @@ public abstract class Vehiculos {
     
     public abstract void setDano(int cantidad);
     public abstract void setObjetos(int ataque, int punteria, int defensa, int hp,int pp);
+    public abstract void imagen(int icono);
 }
