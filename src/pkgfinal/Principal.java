@@ -14,6 +14,7 @@ public class Principal extends javax.swing.JFrame {
     Tablero v1 = new Tablero();
     ventanaingresos v2 = new ventanaingresos();
     Reportes v3 = new Reportes();
+    nuevoVehiculo v4 = new nuevoVehiculo();
 
     public Principal() {
         initComponents();
@@ -32,6 +33,8 @@ public class Principal extends javax.swing.JFrame {
             v3.setNombres(v2.jTextField2.getText());
             v2.setVisible(false);
         });
+        
+        
 
     }
     private class accion implements ActionListener{
@@ -55,6 +58,9 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -103,6 +109,11 @@ public class Principal extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 102, 102));
         jButton4.setText("VEHICULOS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
         jButton4.setBounds(70, 230, 240, 50);
 
@@ -117,13 +128,26 @@ public class Principal extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 102, 102));
         jButton6.setText("REPORETES");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6);
         jButton6.setBounds(740, 300, 220, 50);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1000, 800);
+        jLabel1.setBounds(0, 0, 1000, 780);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1000, 800);
+        jPanel1.setBounds(0, 0, 1000, 780);
+
+        jMenu1.setText("Cambir de Usuario");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +176,31 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        v3.verificacion();
+        
+        if(v3.existe==true){
+            v4.setVisible(true);
+            v4.jButton9.addActionListener((ActionEvent e) -> {
+                v3.usuario.get(0).nuevoVehiculo(v4.tp,v4.mg,v4.jTextField1.getText());
+                v3.usuario.get(0).verVeh();
+                //v4.setVisible(false);
+                v4.repaint();
+        });
+        }else{
+            v2.setVisible(true);
+        }
+
+
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        v3.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -161,6 +210,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

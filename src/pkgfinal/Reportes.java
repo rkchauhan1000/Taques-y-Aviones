@@ -2,13 +2,14 @@
 package pkgfinal;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Reportes extends javax.swing.JFrame {
 
     
     Persona user;
     ArrayList<Persona> usuario= new ArrayList<>();
-    
+    boolean existe;
             
     
     public Reportes() {
@@ -23,9 +24,18 @@ public class Reportes extends javax.swing.JFrame {
         user = new Persona(name);
         NuevoUsuario(user);
     }
-    public void verNombre (){
+    private void verNombre (){
         for(int i = 0; i<usuario.size();i++){
             System.out.println(i+": "+usuario.get(i).nombre);
+        }
+    }
+    
+    public void verificacion(){
+        if(usuario.size()==0){
+            JOptionPane.showMessageDialog(null, "No Existe Ningun Usuario");
+            existe = false;
+        }else{
+            existe = true;
         }
     }
 

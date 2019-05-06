@@ -106,7 +106,7 @@ public class Tanque extends Vehiculos {
                 new ImageIcon("src/imagen/imagen.Tanques/tanque7.jpg");
             } 
           
-            veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
+            //veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
     }
 
 }

@@ -1,10 +1,7 @@
 
 package pkgfinal;
 
-import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 
 public class Persona {
@@ -56,11 +53,15 @@ public class Persona {
             //tanque
             vehTanque.nick_name(nick);
             vehTanque.imagen(icono);
-            vehiculo.add(vehTanque);
-            
+            vehiculo.add(vehTanque);  
         }
         numVehiculos++;
         
+    }
+    public void verVeh(){
+        for(int i = 0; i<vehiculo.size();i++){
+            System.out.println(i+": "+vehiculo.get(i).nickName);
+        }
     }
 }
 

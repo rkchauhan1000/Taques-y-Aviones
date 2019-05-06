@@ -93,6 +93,7 @@ public class Avion extends Vehiculos {
     }
     @Override
     public void imagen(int icono){
+            
             //Avion
             if(icono==1){
                 new ImageIcon("src/imagen/imagen.Aviones/Avion1.jpg");
@@ -109,7 +110,7 @@ public class Avion extends Vehiculos {
             }else {
                 new ImageIcon("src/imagen/imagen.Aviones/Avion7.jpg");
             }
-            veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
+            //veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
               
     }
 }
