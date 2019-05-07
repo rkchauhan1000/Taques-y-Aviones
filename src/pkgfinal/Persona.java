@@ -9,9 +9,8 @@ public class Persona {
     String nombre;
     int oro;
     int numVehiculos;
-    Vehiculos vehTanque = new Tanque();
-    Vehiculos vehAvion  = new Avion();
-    int tipoveh;
+    Vehiculos vehTanque = null;
+    Vehiculos vehAvion  = null;
     int tipoIcono;
     //Arraylis de vehiculos
     ArrayList<Vehiculos> vehiculo= new ArrayList<>();
@@ -45,20 +44,25 @@ public class Persona {
         
         if(tipo==1){
             //Avion
+            vehAvion  = new Avion();
             vehAvion.nick_name(nick);
             vehAvion.imagen(icono);
             vehiculo.add(vehAvion);
             
-        }else{
+        }else if(tipo==2){
             //tanque
+            vehTanque = new Tanque();
             vehTanque.nick_name(nick);
             vehTanque.imagen(icono);
             vehiculo.add(vehTanque);  
+        }else{
+            
         }
         numVehiculos++;
         
     }
     public void verVeh(){
+        System.out.println("vehiculos");
         for(int i = 0; i<vehiculo.size();i++){
             System.out.println(i+": "+vehiculo.get(i).nickName);
         }

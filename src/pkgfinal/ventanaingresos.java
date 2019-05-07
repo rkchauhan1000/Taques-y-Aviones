@@ -9,6 +9,7 @@ public class ventanaingresos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
+        
     }
     
     public void limpiar(){
@@ -24,7 +25,6 @@ public class ventanaingresos extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

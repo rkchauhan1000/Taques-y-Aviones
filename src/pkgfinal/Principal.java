@@ -15,8 +15,11 @@ public class Principal extends javax.swing.JFrame {
     ventanaingresos v2 = new ventanaingresos();
     Reportes v3 = new Reportes();
     nuevoVehiculo v4 = new nuevoVehiculo();
+    int j1;
+    int j2;
 
     public Principal() {
+        j1=0;
         initComponents();
         setLayout(null);
         this.setLocationRelativeTo(null);
@@ -32,9 +35,16 @@ public class Principal extends javax.swing.JFrame {
         v2.jButton1.addActionListener((e) -> {
             v3.setNombres(v2.jTextField2.getText());
             v2.setVisible(false);
+            v2.limpiar();
         });
-        
-        
+        //jMenuBar1.
+        v4.jButton9.addActionListener((ActionEvent ec) -> {
+            System.out.println("entra jajaja");
+        v3.usuario.get(j1).nuevoVehiculo(v4.tp,v4.mg,v4.jTextField1.getText());
+        v3.usuario.get(j1).verVeh();
+        v4.setVisible(false);
+        //v4.repaint();
+        });
 
     }
     private class accion implements ActionListener{
@@ -164,35 +174,41 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        setVisible(false);
-        v1.tamanyo.setVisible(true);
 
-        v1.jButton4.addActionListener((e) -> {
-            setVisible(true);
-            v1.setVisible(false);
+        v3.verificacion();
+        try {
+            v3.verificacionVehiculos(j1);
+            if(v3.existeVehiculos==false){
+                if(v3.usuario.get(j1).vehiculo.size()==0){
+                    v4.setVisible(true);  
+                }else if(v3.usuario.get(j1).vehiculo.size()==1){
+                    v4.setVisible(true);   
+                }else if(v3.usuario.get(j1).vehiculo.size()==2){
+                    v4.setVisible(true);   
+                }else{
+                }
+            }else{
+                setVisible(false);
+                v1.tamanyo.setVisible(true);
+                v1.jButton4.addActionListener((e) -> {
+                setVisible(true);
+                v1.setVisible(false);
         });
-
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("Error no existen Vehiculos");
+        }      
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         v3.verificacion();
-        
         if(v3.existe==true){
             v4.setVisible(true);
-            v4.jButton9.addActionListener((ActionEvent e) -> {
-                v3.usuario.get(0).nuevoVehiculo(v4.tp,v4.mg,v4.jTextField1.getText());
-                v3.usuario.get(0).verVeh();
-                //v4.setVisible(false);
-                v4.repaint();
-        });
         }else{
             v2.setVisible(true);
         }
-
-
 
     }//GEN-LAST:event_jButton4ActionPerformed
 

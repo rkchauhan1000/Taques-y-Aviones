@@ -144,7 +144,6 @@ public class nuevoVehiculo extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         label3 = new java.awt.Label();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(750, 444));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
