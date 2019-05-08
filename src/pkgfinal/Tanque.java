@@ -91,22 +91,22 @@ public class Tanque extends Vehiculos {
         
             //tanque
             if(icono==1){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque1.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque1.jpg");
             }else if(icono==2){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque2.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque2.jpg");
             }else if(icono==3){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque3.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque3.jpg");
             }else if(icono==4){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque4.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque4.jpg");
             }else if(icono==5){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque5.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque5.jpg");
             }else if(icono==6){
-                new ImageIcon("src/imagen/imagen.Tanques/tanque6.png");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque6.png");
             }else {
-                new ImageIcon("src/imagen/imagen.Tanques/tanque7.jpg");
+                vehh=new ImageIcon("src/imagen/Tanques/tanque7.jpg");
             } 
           
-            //veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
+            veht = new ImageIcon(vehh.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH));
     }
 
 }

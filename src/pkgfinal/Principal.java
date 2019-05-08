@@ -15,10 +15,14 @@ public class Principal extends javax.swing.JFrame {
     ventanaingresos v2 = new ventanaingresos();
     Reportes v3 = new Reportes();
     nuevoVehiculo v4 = new nuevoVehiculo();
+    seleVehiculos v5 = new seleVehiculos();
+    Tienda v6 = new Tienda();
+    
     int j1;
     int j2;
 
     public Principal() {
+        //v6.setVisible(true);
         j1=0;
         initComponents();
         setLayout(null);

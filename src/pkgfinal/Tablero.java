@@ -4,8 +4,10 @@ package pkgfinal;
 import com.sun.glass.events.MouseEvent;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,6 +31,13 @@ public class Tablero extends javax.swing.JFrame {
     int alto;
     int pos1;
     int pos2;
+    
+    int a;
+    int b;
+    int c;
+    int y;
+    int x;
+    int z;
     
     int dadode6;
     int dadode100;
@@ -68,7 +77,15 @@ public class Tablero extends javax.swing.JFrame {
             dado2();
             dado3();
         });
+                
+        jButton4.addActionListener((ec) -> {
+        p1.setVisible(true);
+        setVisible(false);
+
+            }); 
+        
         p1.jButton2.addActionListener((e) -> {
+
          p1.v3.verificacion();
         try {
             p1.v3.verificacionVehiculos(p1.j1);
@@ -82,21 +99,26 @@ public class Tablero extends javax.swing.JFrame {
                 }else{
                 }
             }else{
+                                   
+                p1.v5.removerTabla();                    
+                for(int i=0; i<p1.v3.usuario.get(p1.j1).vehiculo.size();i++){
+                    p1.v5.listarVehiculos(i+1, p1.v3.usuario.get(p1.j1).vehiculo.get(i).nickName);                
+                }
                 setVisible(false);
-                tamanyo.setVisible(true);
-                jButton4.addActionListener((ec) -> {
-                p1.setVisible(true);
-                setVisible(false);
-        });
+                p1.v5.setVisible(true);
+                
             }
             ventanatamnio();
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Error no existen Vehiculos");
         }
         });
-        //ventanatamnio();
-                                     
-        
+        p1.v5.jButton1.addActionListener((ll) -> {
+           p1.v5.setVisible(false);
+            tamanyo.setVisible(true);
+                                    
+        });  
+
     }
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
@@ -121,8 +143,11 @@ public class Tablero extends javax.swing.JFrame {
         jPanel2.removeAll();
         this.largo=largo;
         this.alto=alto;
+        
         setVisible(true);
         generarTablero(largo, alto);
+        posisiones(1, largo, alto);
+        
     }
     
         
@@ -159,12 +184,15 @@ public class Tablero extends javax.swing.JFrame {
                 tablero[fila][columna].addActionListener(accion);
 
 
+                
                 jPanel2.add(tablero[fila][columna]);
                 jPanel2.setLayout(new GridLayout(h,v));
                 jPanel2.updateUI();
+                
                 jPanel2.repaint();
             }
         }
+        
         Tablero();
     }
            
@@ -188,7 +216,6 @@ public class Tablero extends javax.swing.JFrame {
                     if (click.getSource().equals(tablero[fila1][columna])) {
                         pos1 = fila1;
                         pos2 = columna;
-
                         System.out.println(tablero[fila1][columna].getColorModel());
                         System.out.println("Fila " + fila1 + " Columna " + columna);
                         System.out.println(juego[fila1][columna]);
@@ -196,7 +223,20 @@ public class Tablero extends javax.swing.JFrame {
                 }
             }
         }
-    }   
+    }
+    
+    private void posisiones(int tpp,int largo, int alto){
+        // Enemigos
+        
+        //Vehiculo
+        int r1 = (int) ((Math.random()*largo));
+        int r2 = (int) ((Math.random()*alto));
+        System.out.println(r1+", "+r2);
+         //juego[r1][r2] = 1;
+        //juego[r1][r2] = 2;
+                    tablero[r1][r2].setBackground(Color.GREEN);
+                    tablero[r1][r2].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(1).veht);
+    }
         
     private void dado1 (){
         

@@ -11,10 +11,10 @@ public class Enemigo {
     int Aleatorio;
 
     //Constructor
-    public Enemigo(){
+    public Enemigo(int vida,int danio){
         //Se inicializa los atributos que tien cada enemigo
-        vida=5;
-        danyo=5;
+        this.vida=vida;
+        danyo=danio;
         probabilidad=100;
     }
     //Genera la cordenada que tendra el enemigo
