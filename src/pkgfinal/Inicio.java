@@ -22,22 +22,6 @@ public class Inicio extends javax.swing.JFrame {
         Icon iconopri = new ImageIcon(pri.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_SMOOTH));
         jLabel1.setIcon(iconopri);
         
-                 jButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(".actionPerformed()");
-                Principal p = new Principal();
-                
-                p.setVisible(true);
-                setVisible(false);
-            }
-        });
-         jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -103,8 +87,8 @@ public class Inicio extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

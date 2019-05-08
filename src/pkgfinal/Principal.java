@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import pkgfinal.Persona;
 public class Principal extends javax.swing.JFrame {
     
-
-    Tablero v1 = new Tablero();
+    Inicio v = new Inicio();
+    //Tablero v1 = new Tablero();
     ventanaingresos v2 = new ventanaingresos();
     Reportes v3 = new Reportes();
     nuevoVehiculo v4 = new nuevoVehiculo();
@@ -45,7 +45,16 @@ public class Principal extends javax.swing.JFrame {
         v4.setVisible(false);
         //v4.repaint();
         });
-
+        
+        v.jButton1.addActionListener((el) -> {
+                setVisible(true);
+                v.setVisible(false);
+        });
+        v.jButton2.addActionListener((en) -> {
+               System.exit(0);
+        });
+        
+        
     }
     private class accion implements ActionListener{
     @Override
@@ -95,11 +104,6 @@ public class Principal extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("BATALLA");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jButton2);
         jButton2.setBounds(70, 150, 240, 50);
 
@@ -173,33 +177,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        v3.verificacion();
-        try {
-            v3.verificacionVehiculos(j1);
-            if(v3.existeVehiculos==false){
-                if(v3.usuario.get(j1).vehiculo.size()==0){
-                    v4.setVisible(true);  
-                }else if(v3.usuario.get(j1).vehiculo.size()==1){
-                    v4.setVisible(true);   
-                }else if(v3.usuario.get(j1).vehiculo.size()==2){
-                    v4.setVisible(true);   
-                }else{
-                }
-            }else{
-                setVisible(false);
-                v1.tamanyo.setVisible(true);
-                v1.jButton4.addActionListener((e) -> {
-                setVisible(true);
-                v1.setVisible(false);
-        });
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            System.out.println("Error no existen Vehiculos");
-        }      
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -214,13 +191,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        v3.removerTabla();
+        v3.verNombre();
         v3.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

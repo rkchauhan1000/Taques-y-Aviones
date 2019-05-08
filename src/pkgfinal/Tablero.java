@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 public class Tablero extends javax.swing.JFrame {
 
+    Principal p1 = new Principal();
     JButton tablero[][] = null;
     
     JFrame tamanyo= new JFrame();
@@ -67,8 +68,34 @@ public class Tablero extends javax.swing.JFrame {
             dado2();
             dado3();
         });
-        ventanatamnio();
-        
+        p1.jButton2.addActionListener((e) -> {
+         p1.v3.verificacion();
+        try {
+            p1.v3.verificacionVehiculos(p1.j1);
+            if(p1.v3.existeVehiculos==false){
+                if(p1.v3.usuario.get(p1.j1).vehiculo.size()==0){
+                    p1.v4.setVisible(true);  
+                }else if(p1.v3.usuario.get(p1.j1).vehiculo.size()==1){
+                    p1.v4.setVisible(true);   
+                }else if(p1.v3.usuario.get(p1.j1).vehiculo.size()==2){
+                    p1.v4.setVisible(true);   
+                }else{
+                }
+            }else{
+                setVisible(false);
+                tamanyo.setVisible(true);
+                jButton4.addActionListener((ec) -> {
+                p1.setVisible(true);
+                setVisible(false);
+        });
+            }
+            ventanatamnio();
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("Error no existen Vehiculos");
+        }
+        });
+        //ventanatamnio();
+                                     
         
     }
     private void ventanatamnio(){

@@ -14,6 +14,7 @@ public class Reportes extends javax.swing.JFrame {
     DefaultTableModel modelo2 = new DefaultTableModel();
     TableRowSorter<TableModel> name2 = new TableRowSorter<TableModel>(modelo2);
     
+    int pos;
     Persona user;
     ArrayList<Persona> usuario= new ArrayList<>();
     boolean existe;
@@ -21,9 +22,15 @@ public class Reportes extends javax.swing.JFrame {
             
     
     public Reportes() {
+        pos=1;
         initComponents();
-        modelo1.addColumn("Nombre");
+        this.setLocationRelativeTo(null);
         
+        modelo1.addColumn("No.");
+        modelo1.addColumn("Nombre");
+        modelo1.addColumn("No. Vehiculos");
+        
+        modelo2.addColumn("No.");
         modelo2.addColumn("Usuario");
         modelo2.addColumn("Nick");
         modelo2.addColumn("Partidas");
@@ -36,17 +43,17 @@ public class Reportes extends javax.swing.JFrame {
         usuario.add(p);
         removerTabla();
         verNombre();
-        
-        
+        pos++;  
     }
     public void setNombres(String name){
         user = new Persona(name);
+        user.posicion=pos;
         NuevoUsuario(user);
     }
-    private void verNombre (){
+    public void verNombre (){
         for(int i = 0; i<usuario.size();i++){
             //System.out.println(i+": "+usuario.get(i).nombre);
-            agregarNombre(usuario.get(i).nombre);
+            agregarNombre(usuario.get(i).posicion,usuario.get(i).nombre,usuario.get(i).numVehiculos);
         }
     }
     
@@ -72,9 +79,11 @@ public class Reportes extends javax.swing.JFrame {
             existeVehiculos = true;
         }
     }
-    public void agregarNombre(String Nombre){
-        String [] elementos = new String[1];
-        elementos[0]=Nombre;
+    public void agregarNombre(int ps,String Nombre, int numve){
+        String [] elementos = new String[3];
+        elementos[0]=Integer.toString(ps);
+        elementos[1]=Nombre;
+        elementos[2]=Integer.toString(numve);
         modelo1.addRow(elementos);
         jTable1.setModel(modelo1);
     }
@@ -89,7 +98,7 @@ public class Reportes extends javax.swing.JFrame {
         modelo2.addRow(elementos);
         jTable1.setModel(modelo2);
     }
-    private void removerTabla(){
+    public void removerTabla(){
         System.out.println(jTable1.getRowCount());
         for(int i=0;i<jTable1.getRowCount();i++){
             modelo1.removeRow(i);
@@ -119,7 +128,7 @@ public class Reportes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1000, 550));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 660, 550));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
 

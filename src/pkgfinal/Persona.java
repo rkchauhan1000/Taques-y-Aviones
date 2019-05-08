@@ -12,6 +12,7 @@ public class Persona {
     Vehiculos vehTanque = null;
     Vehiculos vehAvion  = null;
     int tipoIcono;
+    int posicion=1;
     //Arraylis de vehiculos
     ArrayList<Vehiculos> vehiculo= new ArrayList<>();
     //Arraylist de objetos
