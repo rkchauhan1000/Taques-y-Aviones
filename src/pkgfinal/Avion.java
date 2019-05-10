@@ -95,7 +95,7 @@ public class Avion extends Vehiculos {
         this.punteria = this.punteria + punteria;
         this.defensa = this.defensa + defensa;
         HP = HP + hp;
-        PP = PP+pp;
+        PP = PP + pp;
     }
     @Override
     public void imagen(int icono){

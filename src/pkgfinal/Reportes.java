@@ -17,6 +17,12 @@ public class Reportes extends javax.swing.JFrame {
     int pos;
     Persona user;
     ArrayList<Persona> usuario= new ArrayList<>();
+    ArrayList<Armas> todasArmas = new ArrayList<>();
+    
+    Arma1 ar1= new Arma1();
+    Arma2 ar2= new Arma2();
+    Arma3 ar3= new Arma3();
+    
     boolean existe;
     boolean existeVehiculos;
             
@@ -25,6 +31,10 @@ public class Reportes extends javax.swing.JFrame {
         pos=1;
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        todasArmas.add(ar1);
+        todasArmas.add(ar2);
+        todasArmas.add(ar3);
         
         modelo1.addColumn("No.");
         modelo1.addColumn("Nombre");

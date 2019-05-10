@@ -20,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     
     int j1;
     int j2;
+    int vv;
 
     public Principal() {
         //v6.setVisible(true);
@@ -45,9 +46,14 @@ public class Principal extends javax.swing.JFrame {
         v4.jButton9.addActionListener((ActionEvent ec) -> {
             System.out.println("entra jajaja");
         v3.usuario.get(j1).nuevoVehiculo(v4.tp,v4.mg,v4.jTextField1.getText());
+        v3.usuario.get(j1).vehiculo.get(vv).arma.add(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1));
+        v3.usuario.get(j1).vehiculo.get(vv).setObjetos(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_ataque, 0,v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_defensa, 0, 0);
         v3.usuario.get(j1).verVeh();
         v4.setVisible(false);
-        //v4.repaint();
+        vv++;
+        v4.repaint();
+        v4.jTextField1.setText("");
+        v4.jTextField2.setText("");
         });
         
         v.jButton1.addActionListener((el) -> {
@@ -57,8 +63,13 @@ public class Principal extends javax.swing.JFrame {
         v.jButton2.addActionListener((en) -> {
                System.exit(0);
         });
+        treArmas();
         
-        
+    }
+    private void treArmas(){
+        v4.listarArmas(v3.todasArmas.get(0).num, v3.todasArmas.get(0).nombre, v3.todasArmas.get(0).aumento_ataque,v3.todasArmas.get(0).aumento_defensa);
+        v4.listarArmas(v3.todasArmas.get(1).num, v3.todasArmas.get(1).nombre, v3.todasArmas.get(1).aumento_ataque,v3.todasArmas.get(1).aumento_defensa);
+        v4.listarArmas(v3.todasArmas.get(2).num, v3.todasArmas.get(2).nombre, v3.todasArmas.get(2).aumento_ataque,v3.todasArmas.get(2).aumento_defensa);
     }
     private class accion implements ActionListener{
     @Override

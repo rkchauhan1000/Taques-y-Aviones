@@ -33,6 +33,10 @@ public class Tablero extends javax.swing.JFrame {
     int pos1;
     int pos2;
     int total;
+    double porcentaje;
+    int Defensa;
+    int Ataque;
+    boolean turno;
     
     int a;
     int b;
@@ -43,7 +47,7 @@ public class Tablero extends javax.swing.JFrame {
     int filaVehiculos;
     int columnaVehiculo;
     int vidacas;
-    int danioooo;
+    double danioooo;
     
     int dadode6;
     int dadode100;
@@ -121,6 +125,7 @@ public class Tablero extends javax.swing.JFrame {
         }
         });
         p1.v5.jButton1.addActionListener((ll) -> {
+            p1.setVisible(false);
         a= Integer.parseInt(p1.v5.jTextField1.getText());
         b= Integer.parseInt(p1.v5.jTextField2.getText());
         c= Integer.parseInt(p1.v5.jTextField3.getText());
@@ -135,6 +140,22 @@ public class Tablero extends javax.swing.JFrame {
             
         }); 
         
+    }
+    private void setTurno(){
+        int t= (int) (Math.random()+10);
+        if(t<5){
+            turno=true;
+        }else{
+            turno=false;
+        }
+    }
+    private void estado(){
+        jTextField15.setText(Integer.toString(en.rev[0].vida));
+        jTextField16.setText(Integer.toString(en.rev[1].vida));
+        jTextField17.setText(Integer.toString(en.rev[2].vida));
+        jTextField18.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).HP));
+        jTextField19.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).HP));
+        jTextField20.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).HP));
     }
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
@@ -163,6 +184,8 @@ public class Tablero extends javax.swing.JFrame {
         setVisible(true);
         generarTablero(largo, alto);
         posisiones(z, largo, alto);
+        setTurno();
+        estado();
         
     }
     
@@ -177,23 +200,27 @@ public class Tablero extends javax.swing.JFrame {
                 int r1 = (int) ((Math.random()*3)+1);
                 //int r2 = (int) ((Math.random()*2)+1);
                 System.out.println(r1);
-                if (r1==1) {
-                    juego[fila][columna] = 1;
-                    tablero[fila][columna] = new JButton();
-                    tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
-                    tablero[fila][columna].setBackground(Color.GREEN);
-                }else if (r1==2) {
-                    juego[fila][columna] = 2;
-                    tablero[fila][columna] = new JButton();
-                    tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
-                    tablero[fila][columna].setBackground(Color.BLUE);
-                }else if (r1==3) {
-                    juego[fila][columna] = 3;
-                    tablero[fila][columna] = new JButton();
-                    tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
-                    tablero[fila][columna].setBackground(Color.RED);
-                }else{
-                    
+                switch (r1) {
+                    case 1:
+                        juego[fila][columna] = 1;
+                        tablero[fila][columna] = new JButton();
+                        tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
+                        tablero[fila][columna].setBackground(Color.GREEN);
+                        break;
+                    case 2:
+                        juego[fila][columna] = 2;
+                        tablero[fila][columna] = new JButton();
+                        tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
+                        tablero[fila][columna].setBackground(Color.BLUE);
+                        break;
+                    case 3:
+                        juego[fila][columna] = 3;
+                        tablero[fila][columna] = new JButton();
+                        tablero[fila][columna].setBounds(fila * 100, columna * 100, 100, 100);
+                        tablero[fila][columna].setBackground(Color.RED);
+                        break;
+                    default:
+                        break;
                 }
 
                 Pieza accion = new Pieza();
@@ -220,9 +247,7 @@ public class Tablero extends javax.swing.JFrame {
                 System.out.print(juego[fila][columna] + ", ");
             }
         }
-    }
-
-         
+    }    
     private class Pieza implements ActionListener {
 
         @Override
@@ -232,10 +257,42 @@ public class Tablero extends javax.swing.JFrame {
                     if (click.getSource().equals(tablero[fila1][columna])) {
                         pos1 = fila1;
                         pos2 = columna;
-                        
+                        switch(juego[fila1][columna]){
+                            case 1:
+                                
+                                break;
+                            case 2:
+                                
+                                break;
+                            case 3:
+                                
+                                break;
+                            case 4:          
+                                tablero[en.rev[0].fila][en.rev[0].columna].addActionListener((edo) -> {
+                                    AtacarEnemigo(0, en.rev[0].fila, en.rev[0].columna, filaVehiculos, columnaVehiculo);
+                                }); 
+                                break;
+                            case 5:
+                                tablero[en.rev[1].fila][en.rev[1].columna].addActionListener((edo) -> {
+                                AtacarEnemigo(1, en.rev[1].fila, en.rev[1].columna, filaVehiculos, columnaVehiculo);
+                                }); 
+                                break;
+                            case 6:
+                                tablero[en.rev[2].fila][en.rev[2].columna].addActionListener((edo) -> {
+                                AtacarEnemigo(2, en.rev[2].fila, en.rev[2].columna, filaVehiculos, columnaVehiculo);
+                                }); 
+                                break;
+                            case 7:
+                                
+                                break;
+                            case 8:
+                                
+                                break;
+                        }
                         System.out.println(tablero[fila1][columna].getColorModel());
                         System.out.println("Fila " + fila1 + " Columna " + columna);
                         System.out.println(juego[fila1][columna]);
+                        estado();
                     }
                 }
             }
@@ -271,10 +328,10 @@ public class Tablero extends javax.swing.JFrame {
             juego[r1][r2] = 4;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[0].veht);
-            
+           /* 
             tablero[en.rev[0].fila][en.rev[0].columna].addActionListener((ao) -> {
                 AtacarEnemigo(0, en.rev[0].fila, en.rev[0].columna, filaVehiculos, columnaVehiculo);
-            }); 
+            }); */
         }
     }
         
@@ -289,10 +346,10 @@ public class Tablero extends javax.swing.JFrame {
             juego[r1][r2] = 5;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[1].veht);
-            
+            /*
             tablero[en.rev[1].fila][en.rev[1].columna].addActionListener((eso) -> {
                 AtacarEnemigo(1, en.rev[1].fila, en.rev[1].columna, filaVehiculos, columnaVehiculo);
-            }); 
+            }); */
         }
         
     }
@@ -308,11 +365,15 @@ public class Tablero extends javax.swing.JFrame {
             juego[r1][r2] = 6;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[2].veht);
-            
+         /*   
             tablero[en.rev[2].fila][en.rev[2].columna].addActionListener((edo) -> {
                 AtacarEnemigo(2, en.rev[2].fila, en.rev[2].columna, filaVehiculos, columnaVehiculo);
             }); 
+*/
         }
+    }
+    private void AtacarJugador(){
+        
     }
     private void AtacarEnemigo(int e, int fe, int ce, int fv, int cv){
         Distancia(fe, ce, fv, cv);
@@ -321,21 +382,26 @@ public class Tablero extends javax.swing.JFrame {
         if (danioooo<=0) {
             System.out.println("Fallaste");
         }else{
-            en.rev[e].vida=en.rev[e].vida-danioooo;
+            en.rev[e].vida=(int) (en.rev[e].vida-danioooo);
             System.out.println("Bien danio: "+danioooo);
             System.out.println("Bien vida: "+en.rev[e].vida);
         }
     }
-    private void Danio(int E,int d){
-        dado2();
-        System.out.println("\n"+dadode100);
-        System.out.println(en.rev[E].defensa);
-        System.out.println(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque);
-        System.out.println(dadode100/100);
-        System.out.println(0.04*total);
-        System.out.println(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque*((dadode100/100)-(0.04*total)));
+    private void Danio(int E,long d){
         
-        danioooo= (int) (en.rev[E].defensa-(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque+p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque*((dadode100/100)-(0.04*total))));
+        dado2();
+        Ataque=(int) p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque;
+        Defensa=en.rev[E].defensa;
+        porcentaje= (0.01*dadode100);
+        
+        System.out.println("\n"+dadode100);
+        System.out.println("Defensa: "+Defensa);
+        System.out.println("Ataque: "+Ataque);
+        System.out.println(porcentaje);
+        System.out.println(0.04*total);
+        System.out.println(Ataque*((porcentaje)-(0.04*total)));
+        
+        danioooo = ((Ataque + (Ataque*((porcentaje)-(0.04*total))))-Defensa);
     }
     private void Distancia(int fe, int ce, int fv, int cv){
         int hor=ce-cv;
@@ -390,6 +456,12 @@ public class Tablero extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -442,6 +514,24 @@ public class Tablero extends javax.swing.JFrame {
 
         jTextField11.setEditable(false);
         jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 120, -1));
+
+        jTextField15.setEditable(false);
+        jPanel1.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 50, -1));
+
+        jTextField16.setEditable(false);
+        jPanel1.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 50, -1));
+
+        jTextField17.setEditable(false);
+        jPanel1.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 50, -1));
+
+        jTextField18.setEditable(false);
+        jPanel1.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 70, -1));
+
+        jTextField19.setEditable(false);
+        jPanel1.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 70, -1));
+
+        jTextField20.setEditable(false);
+        jPanel1.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, 70, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 690, 1000, 110));
 
@@ -546,7 +636,13 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

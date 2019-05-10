@@ -1,11 +1,14 @@
 
 package pkgfinal;
 
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public abstract class Vehiculos {
    
+    ArrayList<Armas> arma = new ArrayList<>();
+    
     char simbolo;
     int nivel;
     double experiencia1;

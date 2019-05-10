@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 public class Tanque extends Vehiculos {
 
 
+    
     //Constructor
     public Tanque(){
         nivel=1;
