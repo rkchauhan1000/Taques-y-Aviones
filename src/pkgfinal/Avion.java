@@ -110,7 +110,7 @@ public class Avion extends Vehiculos {
             }else {
                 vehh=new ImageIcon("src/imagen/Aviones/Avion7.jpg");
             }
-            veht = new ImageIcon(vehh.getImage().getScaledInstance(50,50,Image.SCALE_SMOOTH));
+            veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
               
     }
 }

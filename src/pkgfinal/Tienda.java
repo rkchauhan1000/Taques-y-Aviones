@@ -10,7 +10,7 @@ public class Tienda extends javax.swing.JFrame {
     ImageIcon torre;
     Icon iconoTorre;
     public Tienda() {
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         torre = new ImageIcon("src/imagen/tienda1.gif");
         //iconoTorre = new ImageIcon(torre.getImage().getScaledInstance(getWidth(),getHeight(), Image.SCALE_SMOOTH));
         //jLabel1.setIcon(iconoTorre);
@@ -23,9 +23,6 @@ public class Tienda extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-
-        setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(new java.awt.Dimension(500, 380));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -1,6 +1,9 @@
 
 package pkgfinal;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 public class Enemigo {
 
     int vida;
@@ -9,6 +12,9 @@ public class Enemigo {
     int danyo;
     int probabilidad;
     int Aleatorio;
+    
+    ImageIcon vehh;
+    Icon veht;
 
     //Constructor
     public Enemigo(int vida,int danio){
@@ -17,6 +23,7 @@ public class Enemigo {
         danyo=danio;
         probabilidad=100;
     }
+
     //Genera la cordenada que tendra el enemigo
     public void Cordenada(){
         fila= (int) (Math.random()*5)+1;
@@ -30,4 +37,9 @@ public class Enemigo {
 
         }*/
     }
+    public void setDano(int cantidad){
+        vida=vida-cantidad;
+    }
+        
+        
 }

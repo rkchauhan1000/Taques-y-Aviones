@@ -18,6 +18,7 @@ public class Tablero extends javax.swing.JFrame {
 
     Principal p1 = new Principal();
     JButton tablero[][] = null;
+    Genera_Enemigos en= new Genera_Enemigos();
     
     JFrame tamanyo= new JFrame();
     JPanel sobre = new JPanel();
@@ -38,6 +39,7 @@ public class Tablero extends javax.swing.JFrame {
     int y;
     int x;
     int z;
+    int vidacas;
     
     int dadode6;
     int dadode100;
@@ -114,11 +116,20 @@ public class Tablero extends javax.swing.JFrame {
         }
         });
         p1.v5.jButton1.addActionListener((ll) -> {
-           p1.v5.setVisible(false);
+        a= Integer.parseInt(p1.v5.jTextField1.getText());
+        b= Integer.parseInt(p1.v5.jTextField2.getText());
+        c= Integer.parseInt(p1.v5.jTextField3.getText());
+        z=a-1;
+            p1.v5.setVisible(false);
+           
             tamanyo.setVisible(true);
-                                    
-        });  
-
+            
+            jTextField9.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).nickName);
+            jTextField10.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).nickName);
+            jTextField11.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).nickName);
+            
+        }); 
+        
     }
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
@@ -146,7 +157,7 @@ public class Tablero extends javax.swing.JFrame {
         
         setVisible(true);
         generarTablero(largo, alto);
-        posisiones(1, largo, alto);
+        posisiones(z, largo, alto);
         
     }
     
@@ -216,6 +227,7 @@ public class Tablero extends javax.swing.JFrame {
                     if (click.getSource().equals(tablero[fila1][columna])) {
                         pos1 = fila1;
                         pos2 = columna;
+                        
                         System.out.println(tablero[fila1][columna].getColorModel());
                         System.out.println("Fila " + fila1 + " Columna " + columna);
                         System.out.println(juego[fila1][columna]);
@@ -234,8 +246,48 @@ public class Tablero extends javax.swing.JFrame {
         System.out.println(r1+", "+r2);
          //juego[r1][r2] = 1;
         //juego[r1][r2] = 2;
-                    tablero[r1][r2].setBackground(Color.GREEN);
-                    tablero[r1][r2].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(1).veht);
+        juego[r1][r2] = 7;
+        tablero[r1][r2].setBackground(Color.GREEN);
+        tablero[r1][r2].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(tpp).veht);
+        
+        posicionEne1(tpp,largo,alto);
+        posicionEne2(tpp,largo,alto);
+        posicionEne3(tpp,largo,alto);
+
+    }
+    private void posicionEne1(int tpp,int largo, int alto){
+        int r1 = (int) ((Math.random()*largo));
+        int r2 = (int) ((Math.random()*alto));
+        if(juego[r1][r2] ==7 ){
+            posicionEne1(tpp,largo,alto);
+        }else{
+            juego[r1][r2] = 4;
+            tablero[r1][r2].setBackground(Color.GREEN);
+            tablero[r1][r2].setIcon(en.rev[0].veht);
+        }
+    }
+        private void posicionEne2(int tpp,int largo, int alto){
+        int r1 = (int) ((Math.random()*largo));
+        int r2 = (int) ((Math.random()*alto));
+        if(juego[r1][r2] ==7 && juego[r1][r2] ==4){
+            posicionEne2(tpp,largo,alto);
+        }else{
+            juego[r1][r2] = 5;
+            tablero[r1][r2].setBackground(Color.GREEN);
+            tablero[r1][r2].setIcon(en.rev[1].veht);
+        }
+        
+    }
+       private void posicionEne3(int tpp,int largo, int alto){
+        int r1 = (int) ((Math.random()*largo));
+        int r2 = (int) ((Math.random()*alto));
+        if(juego[r1][r2] ==7 && juego[r1][r2] ==4 && juego[r1][r2] ==5){
+            posicionEne3(tpp,largo,alto);
+        }else{
+            juego[r1][r2] = 6;
+            tablero[r1][r2].setBackground(Color.GREEN);
+            tablero[r1][r2].setIcon(en.rev[2].veht);
+        }
     }
         
     private void dado1 (){
@@ -305,33 +357,30 @@ public class Tablero extends javax.swing.JFrame {
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 0, 110, -1));
 
         jTextField6.setEditable(false);
-        jTextField6.setText("Enemigo 1");
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jTextField6.setText("LOKI");
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 70, -1));
 
         jTextField7.setEditable(false);
-        jTextField7.setText("Enemigo 2");
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jTextField7.setText("ASORE");
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 70, -1));
 
         jTextField8.setEditable(false);
-        jTextField8.setText("Enemigo 3");
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jTextField8.setText("WESKER");
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, -1));
 
         jTextField9.setEditable(false);
-        jTextField9.setText("Vehiculo 1");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 120, -1));
 
         jTextField10.setEditable(false);
-        jTextField10.setText("Vehiculo 2");
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 120, -1));
 
         jTextField11.setEditable(false);
-        jTextField11.setText("Vehiculo 3");
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, -1));
+        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 690, 1000, 110));
 
@@ -398,6 +447,11 @@ public class Tablero extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 106, 200, 588));
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 760, -1, -1));
 
         pack();
@@ -410,6 +464,10 @@ public class Tablero extends javax.swing.JFrame {
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
