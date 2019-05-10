@@ -32,6 +32,7 @@ public class Tablero extends javax.swing.JFrame {
     int alto;
     int pos1;
     int pos2;
+    int total;
     
     int a;
     int b;
@@ -39,7 +40,10 @@ public class Tablero extends javax.swing.JFrame {
     int y;
     int x;
     int z;
+    int filaVehiculos;
+    int columnaVehiculo;
     int vidacas;
+    int danioooo;
     
     int dadode6;
     int dadode100;
@@ -104,6 +108,7 @@ public class Tablero extends javax.swing.JFrame {
                                    
                 p1.v5.removerTabla();                    
                 for(int i=0; i<p1.v3.usuario.get(p1.j1).vehiculo.size();i++){
+                    p1.v5.sel=3;
                     p1.v5.listarVehiculos(i+1, p1.v3.usuario.get(p1.j1).vehiculo.get(i).nickName);                
                 }
                 setVisible(false);
@@ -244,8 +249,8 @@ public class Tablero extends javax.swing.JFrame {
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
         System.out.println(r1+", "+r2);
-         //juego[r1][r2] = 1;
-        //juego[r1][r2] = 2;
+        filaVehiculos=r1;
+        columnaVehiculo=r2;
         juego[r1][r2] = 7;
         tablero[r1][r2].setBackground(Color.GREEN);
         tablero[r1][r2].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(tpp).veht);
@@ -258,36 +263,92 @@ public class Tablero extends javax.swing.JFrame {
     private void posicionEne1(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
+        en.rev[0].fila=r1;
+        en.rev[0].columna=r2;
         if(juego[r1][r2] ==7 ){
             posicionEne1(tpp,largo,alto);
         }else{
             juego[r1][r2] = 4;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[0].veht);
+            
+            tablero[en.rev[0].fila][en.rev[0].columna].addActionListener((ao) -> {
+                AtacarEnemigo(0, en.rev[0].fila, en.rev[0].columna, filaVehiculos, columnaVehiculo);
+            }); 
         }
     }
-        private void posicionEne2(int tpp,int largo, int alto){
+        
+    private void posicionEne2(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
+        en.rev[1].fila=r1;
+        en.rev[1].columna=r2;
         if(juego[r1][r2] ==7 && juego[r1][r2] ==4){
             posicionEne2(tpp,largo,alto);
         }else{
             juego[r1][r2] = 5;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[1].veht);
+            
+            tablero[en.rev[1].fila][en.rev[1].columna].addActionListener((eso) -> {
+                AtacarEnemigo(1, en.rev[1].fila, en.rev[1].columna, filaVehiculos, columnaVehiculo);
+            }); 
         }
         
     }
-       private void posicionEne3(int tpp,int largo, int alto){
+       
+    private void posicionEne3(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
+        en.rev[2].fila=r1;
+        en.rev[2].columna=r2;
         if(juego[r1][r2] ==7 && juego[r1][r2] ==4 && juego[r1][r2] ==5){
             posicionEne3(tpp,largo,alto);
         }else{
             juego[r1][r2] = 6;
             tablero[r1][r2].setBackground(Color.GREEN);
             tablero[r1][r2].setIcon(en.rev[2].veht);
+            
+            tablero[en.rev[2].fila][en.rev[2].columna].addActionListener((edo) -> {
+                AtacarEnemigo(2, en.rev[2].fila, en.rev[2].columna, filaVehiculos, columnaVehiculo);
+            }); 
         }
+    }
+    private void AtacarEnemigo(int e, int fe, int ce, int fv, int cv){
+        Distancia(fe, ce, fv, cv);
+        Danio(e, total);
+        System.out.println(total);
+        if (danioooo<=0) {
+            System.out.println("Fallaste");
+        }else{
+            en.rev[e].vida=en.rev[e].vida-danioooo;
+            System.out.println("Bien danio: "+danioooo);
+            System.out.println("Bien vida: "+en.rev[e].vida);
+        }
+    }
+    private void Danio(int E,int d){
+        dado2();
+        System.out.println("\n"+dadode100);
+        System.out.println(en.rev[E].defensa);
+        System.out.println(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque);
+        System.out.println(dadode100/100);
+        System.out.println(0.04*total);
+        System.out.println(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque*((dadode100/100)-(0.04*total)));
+        
+        danioooo= (int) (en.rev[E].defensa-(p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque+p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque*((dadode100/100)-(0.04*total))));
+    }
+    private void Distancia(int fe, int ce, int fv, int cv){
+        int hor=ce-cv;
+        int ver=fe-fv;
+        if(hor<0){
+            hor=hor*(-1);
+        }else{
+        }
+        if(ver<0){
+            ver=ver*(-1);
+        }else{
+        }
+        total= hor + ver;
     }
         
     private void dado1 (){

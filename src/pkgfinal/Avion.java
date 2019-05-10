@@ -14,6 +14,12 @@ public class Avion extends Vehiculos {
     public Avion(){
         nivel=1;
         ide = 9;
+        cantidad_Ataque();
+        cantidad_Defensa();
+        cantidad_Punteria();
+        hp();
+        pp();
+        movimiento_especial();
     }
     //Para crear un vehiculo es necesario asignarle un nombre
     @Override

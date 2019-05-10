@@ -10,6 +10,7 @@ public class seleVehiculos extends javax.swing.JFrame {
     
     DefaultTableModel modelo = new DefaultTableModel();
     TableRowSorter<TableModel> name = new TableRowSorter<TableModel>(modelo);
+    int sel;
     
     public seleVehiculos() {
         initComponents();
@@ -66,6 +67,11 @@ public class seleVehiculos extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agragar(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 278, 424));
@@ -108,6 +114,18 @@ public class seleVehiculos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void agragar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agragar
+        // TODO add your handling code here:
+        if (sel==3) {
+            jTextField1.setText((String) jTable1.getValueAt( jTable1.getSelectedRow(), 0));
+        }else if(sel==2){
+            jTextField2.setText((String) jTable1.getValueAt( jTable1.getSelectedRow(), 0));
+        }else if(sel==1){
+            jTextField3.setText((String) jTable1.getValueAt( jTable1.getSelectedRow(), 0));
+        }
+        sel--;
+    }//GEN-LAST:event_agragar
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

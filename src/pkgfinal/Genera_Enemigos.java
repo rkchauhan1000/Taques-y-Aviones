@@ -15,9 +15,9 @@ public class Genera_Enemigos {
     // se inicializan los datos de cada vehiculo
     public Genera_Enemigos(){
         probabilidad=100;
-        rev[0]= new Enemigo(60,5);
-        rev[1]= new Enemigo(70,5);
-        rev[2]= new Enemigo(75,5);
+        rev[0]= new Enemigo(60,5,55);
+        rev[1]= new Enemigo(70,5,45);
+        rev[2]= new Enemigo(75,5,35);
         
         rev[0].vehh = new ImageIcon("src/imagen/Enemigos/en1.jpg");
         rev[0].veht = new ImageIcon(rev[0].vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));

@@ -11,6 +11,12 @@ public class Tanque extends Vehiculos {
     public Tanque(){
         nivel=1;
         ide = 8;
+        cantidad_Ataque();
+        cantidad_Defensa();
+        cantidad_Punteria();
+        hp();
+        pp();
+        movimiento_especial();
     }
     //Para crear un vehiculo es necesario asignarle un nombre
     @Override

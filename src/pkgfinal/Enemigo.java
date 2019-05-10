@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 public class Enemigo {
 
     int vida;
+    int defensa;
     int fila;
     int columna;
     int danyo;
@@ -17,9 +18,10 @@ public class Enemigo {
     Icon veht;
 
     //Constructor
-    public Enemigo(int vida,int danio){
+    public Enemigo(int vida,int danio, int defensa){
         //Se inicializa los atributos que tien cada enemigo
         this.vida=vida;
+        this.defensa=defensa;
         danyo=danio;
         probabilidad=100;
     }
