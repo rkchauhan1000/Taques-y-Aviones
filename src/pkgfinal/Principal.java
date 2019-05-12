@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import pkgfinal.Persona;
 public class Principal extends javax.swing.JFrame {
     
@@ -18,11 +19,14 @@ public class Principal extends javax.swing.JFrame {
     seleVehiculos v5 = new seleVehiculos();
     Tienda v6 = new Tienda();
     ListPersonas v7 = new ListPersonas();
+    crearArma v8 = new crearArma();
+    achivos arc = new achivos(" ");
     
     String vacio;
     int j1;
     int j2;
     int vv;
+    boolean tipoj;
 
     public Principal() {
         //v6.setVisible(true);
@@ -72,6 +76,51 @@ public class Principal extends javax.swing.JFrame {
                j1= (Integer.parseInt(v7.jTextField1.getText()))-1;
                v7.setVisible(false);
         });
+        v6.jButton7.addActionListener((bn) -> {
+            if(v6.suministro[v6.tipo].precio<v3.usuario.get(j1).oro){
+                v3.usuario.get(j1).Compra(v6.suministro[v6.tipo].precio);
+                v3.usuario.get(j1).compras.add(v6.suministro[v6.tipo]);
+                Datos();
+            }else{
+                JOptionPane.showMessageDialog(null, "No tienes suficiente Dinero");
+            }
+            
+            
+        });
+            v6.ti2.jButton1.addActionListener((bn) -> {
+            if(v6.ti2.TiendaARMAS.get(v6.ti2.tipo).precio<v3.usuario.get(j1).oro){
+                v3.usuario.get(j1).Compra(v6.ti2.TiendaARMAS.get(v6.ti2.tipo).precio);
+                v3.usuario.get(j1).compras.add(v6.ti2.TiendaARMAS.get(v6.ti2.tipo));
+                Datos();
+            }else{
+                JOptionPane.showMessageDialog(null, "No tienes suficiente Dinero");
+            }
+            
+            
+        });
+            v6.ti1.jButton1.addActionListener((bn) -> {
+            if(v6.ti1.vehicuNuevos[v6.ti1.tipo].precio<v3.usuario.get(j1).oro){
+                v3.usuario.get(j1).Compra(v6.ti1.vehicuNuevos[v6.ti1.tipo].precio);
+                v3.usuario.get(j1).compras.add(v6.ti1.vehicuNuevos[v6.ti1.tipo]);
+                Datos();
+            }else{
+                JOptionPane.showMessageDialog(null, "No tienes suficiente Dinero");
+            }
+            
+            
+        });
+        v8.jButton1.addActionListener((lll) -> {
+            int dani=Integer.parseInt(v8.jTextField1.getText());
+            int defensa=Integer.parseInt(v8.jTextField2.getText());
+            String nomm=v8.jTextField3.getText();
+            v6.ti2.TiendaARMAS.add(new nuevaArma(dani, defensa, 0, nomm,50));
+            v8.jTextField1.setText("");
+            v8.jTextField2.setText("");
+            v8.jTextField3.setText("");
+            v8.setVisible(false);
+        setVisible(true);
+        });
+            
         treArmas();
         
     }
@@ -181,6 +230,11 @@ public class Principal extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 102, 102));
         jButton5.setText("ARMAS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
         jButton5.setBounds(70, 310, 240, 50);
 
@@ -245,6 +299,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.setText("Juego");
 
         jMenuItem3.setText("Un Jugador");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Dos Jugadores");
@@ -272,7 +331,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         v6.setVisible(true);
-        this.setVisible(false);
+        //this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
@@ -315,7 +374,20 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        tipoj=true;
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        v8.setVisible(true);
+        setVisible(false);
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        tipoj=false;
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

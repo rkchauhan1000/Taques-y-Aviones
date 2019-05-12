@@ -9,6 +9,7 @@ public class Armas extends javax.swing.JFrame {
     int aumento_defensa;
     int aumento_punteria;
     int num;
+    int precio;
     
     String nombre;
     
@@ -106,11 +107,12 @@ class Arma3 extends Armas{
 class nuevaArma extends Armas{
 
     //Construcctor de la arma
-    public nuevaArma(int ataque, int defensa, int punteria,String nombre){
+    public nuevaArma(int ataque, int defensa, int punteria,String nombre, int precio){
         this.nombre=nombre;
         aumento_ataque=ataque;
         aumento_defensa=defensa;
         aumento_punteria=punteria;
+        this.precio=precio;
     }
 
 }

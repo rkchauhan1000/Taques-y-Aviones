@@ -23,6 +23,7 @@ public class Tablero extends javax.swing.JFrame {
     JButton tablero[][] = null;
     Genera_Enemigos en= new Genera_Enemigos();
     cambiar p2 = new cambiar();
+    aplicarocjetos ob = new aplicarocjetos();
     
     JFrame tamanyo= new JFrame();
     JPanel sobre = new JPanel();
@@ -34,8 +35,8 @@ public class Tablero extends javax.swing.JFrame {
     int juego[][] = null;
     int largo, alto, pos1, pos2, total, Defensa, Ataque;
     double porcentaje;
-    boolean turno;
-    int a, b, c, y, x, z, filaVehiculos, columnaVehiculo, vidacas;
+    boolean turno, versus;
+    int a, b, c, y, x, z, filaVehiculos, columnaVehiculo, vidacas, k, k1,k2;
     double danioooo;
     
     int dadode6, dadode100, dadode4;
@@ -68,12 +69,6 @@ public class Tablero extends javax.swing.JFrame {
         sobre.add(tm1);
         sobre.add(tm2);
         sobre.add(tm3);
-        
-        jButton3.addActionListener((e) -> {
-            dado1();
-            dado2();
-            dado3();
-        });
                 
         jButton4.addActionListener((ec) -> {
         p1.setVisible(true);
@@ -85,22 +80,22 @@ public class Tablero extends javax.swing.JFrame {
 
          p1.v3.verificacion();
         try {
-            p1.v3.verificacionVehiculos(p1.j1);
+            p1.v3.verificacionVehiculos(k);
             if(p1.v3.existeVehiculos==false){
-                if(p1.v3.usuario.get(p1.j1).vehiculo.size()==0){
+                if(p1.v3.usuario.get(k).vehiculo.size()==0){
                     p1.v4.setVisible(true);  
-                }else if(p1.v3.usuario.get(p1.j1).vehiculo.size()==1){
+                }else if(p1.v3.usuario.get(k).vehiculo.size()==1){
                     p1.v4.setVisible(true);   
-                }else if(p1.v3.usuario.get(p1.j1).vehiculo.size()==2){
+                }else if(p1.v3.usuario.get(k).vehiculo.size()==2){
                     p1.v4.setVisible(true);   
                 }else{
                 }
             }else{
                                    
                 p1.v5.removerTabla();                    
-                for(int i=0; i<p1.v3.usuario.get(p1.j1).vehiculo.size();i++){
+                for(int i=0; i<p1.v3.usuario.get(k).vehiculo.size();i++){
                     p1.v5.sel=3;
-                    p1.v5.listarVehiculos(i+1, p1.v3.usuario.get(p1.j1).vehiculo.get(i).nickName);                
+                    p1.v5.listarVehiculos(i+1, p1.v3.usuario.get(k).vehiculo.get(i).nickName);                
                 }
                 setVisible(false);
                 p1.v5.setVisible(true);
@@ -121,28 +116,58 @@ public class Tablero extends javax.swing.JFrame {
            
             tamanyo.setVisible(true);
             
-            jTextField9.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).nickName);
-            jTextField10.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).nickName);
-            jTextField11.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).nickName);
+            jTextField9.setText(p1.v3.usuario.get(k).vehiculo.get(a-1).nickName);
+            jTextField10.setText(p1.v3.usuario.get(k).vehiculo.get(b-1).nickName);
+            jTextField11.setText(p1.v3.usuario.get(k).vehiculo.get(c-1).nickName);
             
         }); 
+        k1=p1.j1;
+        k2=p1.j2;
+        versus=p1.tipoj;
         
     }
     private void Evaluar(){
-        if(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).HP<=0){
-            jTextArea1.setText("Todos tus vehiculos has sido eliminados, PERDISTE ");
+        if(versus==true){
+        
+            if(p1.v3.usuario.get(k1).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(k1).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(k1).vehiculo.get(c-1).HP<=0){
+            //jTextArea1.setText("Todos tus Enemigos de"+p1.v3.usuario.get(k1).nombre+"has sido eliminados ");
+            JOptionPane.showMessageDialog(null, "Todos tus Enemigos de"+p1.v3.usuario.get(k1).nombre+"has sido eliminados ");
+            turno=true;
+            this.setVisible(false);
+            p1.setVisible(true);
+            
+            }else if (p1.v3.usuario.get(k2).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(k2).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(k2).vehiculo.get(c-1).HP<=0){
+             //jTextArea1.setText("Todos tus Enemigos de"+p1.v3.usuario.get(k2).nombre+"has sido eliminados ");
+             JOptionPane.showMessageDialog(null, "Todos tus Enemigos de"+p1.v3.usuario.get(k2).nombre+"has sido eliminados ");
+             turno=true;
+             this.setVisible(false);
+             p1.setVisible(true);
+            }
+            else{
+                turno();
+            } 
+    
+        }
+        else{
+           if(p1.v3.usuario.get(k).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(k).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(k).vehiculo.get(c-1).HP<=0){
+            //jTextArea1.setText("Todos tus vehiculos has sido eliminados, PERDISTE ");
             JOptionPane.showMessageDialog(null, "Todos tus vehiculos has sido eliminados, PERDISTE");
+            turno=true;
             this.setVisible(false);
             p1.setVisible(true);
             
         }else if (en.rev[0].vida<=0 && en.rev[1].vida<=0 && en.rev[2].vida<=0){
-             jTextArea1.setText("Todos tus Enemigos has sido eliminados ");
+             //jTextArea1.setText("Todos tus Enemigos has sido eliminados ");
              JOptionPane.showMessageDialog(null, "Todos tus Enemigos has sido eliminados, GANASTE");
+             turno=true;
              this.setVisible(false);
              p1.setVisible(true);
-        }else{
-            
         }
+        else{
+            turno();
+        } 
+        }
+
     }
     private void setTurno(){
         int t= (int) (Math.random()+10);
@@ -153,18 +178,34 @@ public class Tablero extends javax.swing.JFrame {
         }
     }
     private void turno(){
-        if(turno==true){
+        if(versus==true){
+                if(turno==true){
+                    k=k1;
+                JOptionPane.showMessageDialog(null, "Es tu turno"+p1.v3.usuario.get(k1).nombre);
+                
+            }else{
+                    k=k2;
+                JOptionPane.showMessageDialog(null, "Es tu turno"+p1.v3.usuario.get(k2).nombre);
+                
+            //turno=true;
+            }   
+        }   
+        else{
+            
+            if(turno==true){
             JOptionPane.showMessageDialog(null, "Es tu turno");
-        }else{
+            
+            }else{
             JOptionPane.showMessageDialog(null, "Turno de los enemigos");
-            AtacarJugador();  
+            AtacarJugador();
+            turno=true;
             estado();
             VerificacionVida();
-            Evaluar();
-            turno=true;
             turno();
             
+            }   
         }
+        
     }
         
     
@@ -172,9 +213,9 @@ public class Tablero extends javax.swing.JFrame {
         jTextField15.setText(Integer.toString(en.rev[0].vida));
         jTextField16.setText(Integer.toString(en.rev[1].vida));
         jTextField17.setText(Integer.toString(en.rev[2].vida));
-        jTextField18.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).HP));
-        jTextField19.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).HP));
-        jTextField20.setText(Integer.toString(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).HP));
+        jTextField18.setText(Integer.toString(p1.v3.usuario.get(k).vehiculo.get(a-1).HP));
+        jTextField19.setText(Integer.toString(p1.v3.usuario.get(k).vehiculo.get(b-1).HP));
+        jTextField20.setText(Integer.toString(p1.v3.usuario.get(k).vehiculo.get(c-1).HP));
     }
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
@@ -300,7 +341,6 @@ public class Tablero extends javax.swing.JFrame {
                                     turno=false;
                                     estado();
                                     VerificacionVida();
-                                    turno();
                                     Evaluar();
                                     break;
                                 case 5:
@@ -310,7 +350,6 @@ public class Tablero extends javax.swing.JFrame {
                                     turno=false;
                                     estado();
                                     VerificacionVida();
-                                    turno();
                                     Evaluar();
                                     break;
                                 case 6:
@@ -319,7 +358,6 @@ public class Tablero extends javax.swing.JFrame {
                                     turno=false;
                                     estado();
                                     VerificacionVida();
-                                    turno();
                                     Evaluar();
                                     break;
                                 case 7:
@@ -349,38 +387,38 @@ public class Tablero extends javax.swing.JFrame {
         }
     }
     private void botonCambiar(){
-            if(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).HP>0){
-                p2.jButton1.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(a-1).nickName);
+            if(p1.v3.usuario.get(k).vehiculo.get(a-1).HP>0){
+                p2.jButton1.setText(p1.v3.usuario.get(k).vehiculo.get(a-1).nickName);
                 p2.jButton1.setVisible(true);
                 p2.jButton1.addActionListener((e) -> {
                 z=a-1;
                 tablero[filaVehiculos][columnaVehiculo].setIcon(null);
-                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(z).veht);
+                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(k).vehiculo.get(z).veht);
                 p2.setVisible(false);
                 turno=false;
                 turno();
                 });
             }else{}
             
-            if(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).HP>0){
-                p2.jButton2.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(b-1).nickName);
+            if(p1.v3.usuario.get(k).vehiculo.get(b-1).HP>0){
+                p2.jButton2.setText(p1.v3.usuario.get(k).vehiculo.get(b-1).nickName);
                 p2.jButton2.setVisible(true);
                 p2.jButton2.addActionListener((e) -> {
                 z=b-1;
                 tablero[filaVehiculos][columnaVehiculo].setIcon(null);
-                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(z).veht);
+                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(k).vehiculo.get(z).veht);
                 p2.setVisible(false);
                 turno=false;
                 turno();
                 });
             }else{}
-            if(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).HP>0){
-                p2.jButton3.setText(p1.v3.usuario.get(p1.j1).vehiculo.get(c-1).nickName);
+            if(p1.v3.usuario.get(k).vehiculo.get(c-1).HP>0){
+                p2.jButton3.setText(p1.v3.usuario.get(k).vehiculo.get(c-1).nickName);
                 p2.jButton3.setVisible(true);
                 p2.jButton3.addActionListener((e) -> {
                 z=c-1;
                 tablero[filaVehiculos][columnaVehiculo].setIcon(null);
-                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(z).veht);
+                tablero[filaVehiculos][columnaVehiculo].setIcon(p1.v3.usuario.get(k).vehiculo.get(z).veht);
                 p2.setVisible(false);
                 turno=false;
                 turno();
@@ -396,12 +434,26 @@ public class Tablero extends javax.swing.JFrame {
         p2.jButton2.setVisible(false);
         p2.jButton3.setVisible(false);
         
-        if(p1.v3.usuario.get(p1.j1).vehiculo.get(z).HP<=0 ){
+        if(p1.v3.usuario.get(k).vehiculo.get(z).HP<=0 ){
             botonCambiar();
-   
         }else{
             
         }
+        if(en.rev[0].vida<=0){
+            juego[en.rev[0].fila][en.rev[0].columna] = 1;
+            tablero[en.rev[0].fila][en.rev[0].columna].setBackground(Color.GREEN);
+            tablero[en.rev[0].fila][en.rev[0].columna].setIcon(null);
+        }else{}
+        if(en.rev[1].vida<=0){
+            juego[en.rev[1].fila][en.rev[1].columna] = 1;
+            tablero[en.rev[1].fila][en.rev[1].columna].setBackground(Color.GREEN);
+            tablero[en.rev[1].fila][en.rev[1].columna].setIcon(null);
+        }else{}
+        if(en.rev[2].vida<=0){
+            juego[en.rev[2].fila][en.rev[2].columna] = 1;
+            tablero[en.rev[2].fila][en.rev[2].columna].setBackground(Color.GREEN);
+            tablero[en.rev[2].fila][en.rev[2].columna].setIcon(null);
+        }else{}
         
     }
     private void posisiones(int tpp,int largo, int alto){
@@ -415,11 +467,16 @@ public class Tablero extends javax.swing.JFrame {
         columnaVehiculo=r2;
         juego[r1][r2] = 7;
         tablero[r1][r2].setBackground(Color.GREEN);
-        tablero[r1][r2].setIcon(p1.v3.usuario.get(p1.j1).vehiculo.get(tpp).veht);
+        tablero[r1][r2].setIcon(p1.v3.usuario.get(k).vehiculo.get(tpp).veht);
         
-        posicionEne1(tpp,largo,alto);
-        posicionEne2(tpp,largo,alto);
-        posicionEne3(tpp,largo,alto);
+        if(versus==false){
+           posicionEne1(tpp,largo,alto);
+            posicionEne2(tpp,largo,alto);
+            posicionEne3(tpp,largo,alto); 
+        }else{
+            
+        }
+        
 
     }
     private void posicionEne1(int tpp,int largo, int alto){
@@ -509,41 +566,26 @@ public class Tablero extends javax.swing.JFrame {
         Danio(e, total);
         System.out.println(total);
         if (danioooo<=0) {
-            System.out.println("Fallaste");
+            JOptionPane.showMessageDialog(null, "Fallaste");
         }else{
             en.rev[e].setDano((int) danioooo);
+            JOptionPane.showMessageDialog(null, "Acertaste");
             //en.rev[e].vida=(int) (en.rev[e].vida-danioooo);
-            System.out.println("Bien danio: "+danioooo);
-            System.out.println("Bien vida: "+en.rev[e].vida);
         }
     }
     private void DanioEn(int E){
         Ataque=en.rev[E].danyo;
-        Defensa=(int) p1.v3.usuario.get(p1.j1).vehiculo.get(z).defensa;
+        Defensa=(int) p1.v3.usuario.get(k).vehiculo.get(z).defensa;
         porcentaje= (0.01*dadode100);
-        
-        System.out.println("\n"+dadode100);
-        System.out.println("Defensa: "+Defensa);
-        System.out.println("Ataque: "+Ataque);
-        System.out.println(porcentaje);
-        System.out.println(0.04*total);
-        System.out.println(Ataque*((porcentaje)-(0.04*total)));
         
         danioooo = ((Ataque + (Ataque*((porcentaje)-(0.04*total))))-Defensa);
     }
     private void Danio(int E,long d){
         
         dado2();
-        Ataque=(int) p1.v3.usuario.get(p1.j1).vehiculo.get(z).ataque;
+        Ataque=(int) p1.v3.usuario.get(k).vehiculo.get(z).ataque;
         Defensa=en.rev[E].defensa;
         porcentaje= (0.01*dadode100);
-        
-        System.out.println("\n"+dadode100);
-        System.out.println("Defensa: "+Defensa);
-        System.out.println("Ataque: "+Ataque);
-        System.out.println(porcentaje);
-        System.out.println(0.04*total);
-        System.out.println(Ataque*((porcentaje)-(0.04*total)));
         
         danioooo = ((Ataque + (Ataque*((porcentaje)-(0.04*total))))-Defensa);
     }
@@ -809,6 +851,11 @@ public class Tablero extends javax.swing.JFrame {
         jButton2.setBounds(10, 10, 170, 31);
 
         jButton3.setText("Aplicar Objeto");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3);
         jButton3.setBounds(10, 50, 170, 31);
 
@@ -874,6 +921,15 @@ public class Tablero extends javax.swing.JFrame {
         botonCambiar();
         p2.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ob.removerTabla();
+        for(int i=0;i<p1.v3.usuario.get(k).compras.size();i++){
+            ob.agregarNombre(i+1, p1.v3.usuario.get(k).compras.get(i).nombre);
+        }
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

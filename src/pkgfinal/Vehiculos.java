@@ -17,8 +17,8 @@ public abstract class Vehiculos {
     double defensa;
     double punteria;
     double movesp;
-    int ide;
-    String ruta;
+    int ide, assistencias, destruccion, precio;
+    String ruta, nombre;
 
     double aumentoT;
     double aumentoP;

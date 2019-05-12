@@ -126,10 +126,10 @@ public class Reportes extends javax.swing.JFrame {
         }
     }
     public void agregarVehiculo(int n, String nombre,Icon s){
-        Object [] elementos = new String[3];
+        Object [] elementos = new Object[3];
         elementos[0]=Integer.toString(n);
         elementos[1]=nombre;
-        elementos[2]= "Yefer";
+        elementos[2]= new JLabel(s);
         modelo3.addRow(elementos);
         jTable1.setModel(modelo3);
     }

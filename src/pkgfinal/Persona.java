@@ -16,6 +16,7 @@ public class Persona {
     //Arraylis de vehiculos
     ArrayList<Vehiculos> vehiculo= new ArrayList<>();
     //Arraylist de objetos
+    ArrayList<Object> compras = new ArrayList<>();
     
             
     public Persona(String Nombre){

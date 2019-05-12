@@ -26,6 +26,7 @@ public class Avion extends Vehiculos {
     public void nick_name(String nick){
         ///Pregunta el nombres y el usuario le asigna
         nickName= nick;
+        nombre=nickName;
     }
     //Vida inicial del vehiculo tipo avion
     @Override

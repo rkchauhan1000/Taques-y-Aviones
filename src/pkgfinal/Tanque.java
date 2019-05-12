@@ -25,6 +25,7 @@ public class Tanque extends Vehiculos {
         ///Pregunta el nombres y el usuario le asigna
         System.out.println("Que nickname deseas asignarle");
         nickName= nick;
+        nombre=nickName;
     }
     //Vida inicial del vehiculo tipo avion
     @Override
