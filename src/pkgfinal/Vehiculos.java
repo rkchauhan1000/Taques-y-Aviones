@@ -18,6 +18,7 @@ public abstract class Vehiculos {
     double punteria;
     double movesp;
     int ide;
+    String ruta;
 
     double aumentoT;
     double aumentoP;

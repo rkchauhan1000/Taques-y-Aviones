@@ -2,6 +2,9 @@
 package pkgfinal;
 
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -13,8 +16,11 @@ public class Reportes extends javax.swing.JFrame {
     TableRowSorter<TableModel> name1 = new TableRowSorter<TableModel>(modelo1);
     DefaultTableModel modelo2 = new DefaultTableModel();
     TableRowSorter<TableModel> name2 = new TableRowSorter<TableModel>(modelo2);
+    DefaultTableModel modelo3 = new DefaultTableModel();
+    TableRowSorter<TableModel> name3 = new TableRowSorter<TableModel>(modelo3);
     
     int pos;
+    int nn;
     Persona user;
     ArrayList<Persona> usuario= new ArrayList<>();
     ArrayList<Armas> todasArmas = new ArrayList<>();
@@ -46,6 +52,10 @@ public class Reportes extends javax.swing.JFrame {
         modelo2.addColumn("Partidas");
         modelo2.addColumn("Ganados");
         modelo2.addColumn("Destruidos");
+        
+        modelo3.addColumn("No.");
+        modelo3.addColumn("Nombre");
+        modelo3.addColumn("Icono");
         
     }
     
@@ -115,6 +125,24 @@ public class Reportes extends javax.swing.JFrame {
             i-=1;
         }
     }
+    public void agregarVehiculo(int n, String nombre,Icon s){
+        Object [] elementos = new String[3];
+        elementos[0]=Integer.toString(n);
+        elementos[1]=nombre;
+        elementos[2]= "Yefer";
+        modelo3.addRow(elementos);
+        jTable1.setModel(modelo3);
+    }
+    public void listarVehiculos(){
+        nn=1;
+        removerTabla();
+        for(int i=0; i<usuario.size();i++){
+            for(int j=0;j<usuario.get(i).vehiculo.size();j++){
+                agregarVehiculo(nn, usuario.get(i).vehiculo.get(j).nickName, usuario.get(i).vehiculo.get(j).veht);
+                nn++;
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -123,7 +151,9 @@ public class Reportes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -140,13 +170,27 @@ public class Reportes extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 660, 550));
 
+        jButton1.setText("Vehiculos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        listarVehiculos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

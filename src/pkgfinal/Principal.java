@@ -17,13 +17,16 @@ public class Principal extends javax.swing.JFrame {
     nuevoVehiculo v4 = new nuevoVehiculo();
     seleVehiculos v5 = new seleVehiculos();
     Tienda v6 = new Tienda();
+    ListPersonas v7 = new ListPersonas();
     
+    String vacio;
     int j1;
     int j2;
     int vv;
 
     public Principal() {
         //v6.setVisible(true);
+        vacio="";
         j1=0;
         initComponents();
         setLayout(null);
@@ -41,13 +44,14 @@ public class Principal extends javax.swing.JFrame {
             v3.setNombres(v2.jTextField2.getText());
             v2.setVisible(false);
             v2.limpiar();
+            Datos();
         });
         //jMenuBar1.
         v4.jButton9.addActionListener((ActionEvent ec) -> {
-            System.out.println("entra jajaja");
+
         v3.usuario.get(j1).nuevoVehiculo(v4.tp,v4.mg,v4.jTextField1.getText());
-        v3.usuario.get(j1).vehiculo.get(vv).arma.add(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1));
-        v3.usuario.get(j1).vehiculo.get(vv).setObjetos(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_ataque, 0,v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_defensa, 0, 0);
+        v3.usuario.get(j1).vehiculo.get(v3.usuario.get(j1).numVehiculos-1).arma.add(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1));
+        v3.usuario.get(j1).vehiculo.get(v3.usuario.get(j1).numVehiculos-1).setObjetos(v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_ataque, 0,v3.todasArmas.get(Integer.parseInt(v4.jTextField2.getText())-1).aumento_defensa, 0, 0);
         v3.usuario.get(j1).verVeh();
         v4.setVisible(false);
         vv++;
@@ -62,6 +66,11 @@ public class Principal extends javax.swing.JFrame {
         });
         v.jButton2.addActionListener((en) -> {
                System.exit(0);
+        });
+        
+        v7.jButton1.addActionListener((bn) -> {
+               j1= (Integer.parseInt(v7.jTextField1.getText()))-1;
+               v7.setVisible(false);
         });
         treArmas();
         
@@ -79,6 +88,15 @@ public class Principal extends javax.swing.JFrame {
         escena.Escena.setVisible(true);
     }
 }
+    
+    private void Datos(){
+        if(v3.usuario.size()>0){
+            jTextField1.setText(v3.usuario.get(j1).nombre);
+            jTextField2.setText(Integer.toString(v3.usuario.get(j1).oro));
+        }else{
+            
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,10 +109,18 @@ public class Principal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -119,6 +145,11 @@ public class Principal extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("BATALLA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(70, 150, 240, 50);
 
@@ -164,16 +195,66 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6);
         jButton6.setBounds(740, 300, 220, 50);
+
+        jLabel2.setBackground(new java.awt.Color(255, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Laksaman", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setText("JUGADOR: ");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(60, 570, 100, 30);
+
+        jLabel3.setFont(new java.awt.Font("Keraleeyam", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel3.setText("ORO: ");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(100, 630, 50, 30);
+
+        jTextField1.setEditable(false);
+        jPanel1.add(jTextField1);
+        jTextField1.setBounds(160, 580, 110, 23);
+
+        jTextField2.setEditable(false);
+        jPanel1.add(jTextField2);
+        jTextField2.setBounds(160, 630, 110, 23);
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1000, 780);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1000, 780);
 
-        jMenu1.setText("Cambir de Usuario");
+        jMenu1.setText("Usuario");
+
+        jMenuItem1.setText("Cambiar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Nuevo");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Juego");
+
+        jMenuItem3.setText("Un Jugador");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Dos Jugadores");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -213,6 +294,29 @@ public class Principal extends javax.swing.JFrame {
         v3.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        v7.removerTabla();
+        for(int i=0;i<v3.usuario.size();i++){
+            v7.agregarNombre(v3.usuario.get(i).posicion, v3.usuario.get(i).nombre);
+        }
+        v7.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+        v2.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -222,9 +326,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

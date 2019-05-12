@@ -102,19 +102,26 @@ public class Avion extends Vehiculos {
             
             //Avion
             if(icono==1){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion1.jpg");
+                ruta="src/imagen/Aviones/Avion1.jpg";
+                vehh=new ImageIcon(ruta);
             }else if(icono==2){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion2.jpg");
+                ruta="src/imagen/Aviones/Avion2.jpg";
+                vehh=new ImageIcon(ruta);
             }else if(icono==3){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion3.png");
+                ruta="src/imagen/Aviones/Avion3.png";
+                vehh=new ImageIcon(ruta);
             }else if(icono==4){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion4.jpg");
+                ruta="src/imagen/Aviones/Avion4.jpg";
+                vehh=new ImageIcon(ruta);
             }else if(icono==5){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion5.jpg");
+                ruta="src/imagen/Aviones/Avion5.jpg";
+                vehh=new ImageIcon(ruta);
             }else if(icono==6){
-                vehh=new ImageIcon("src/imagen/Aviones/Avion6.jpg");
+                ruta="src/imagen/Aviones/Avion6.jpg";
+                vehh=new ImageIcon(ruta);
             }else {
-                vehh=new ImageIcon("src/imagen/Aviones/Avion7.jpg");
+                ruta="src/imagen/Aviones/Avion7.jpg";
+                vehh=new ImageIcon(ruta);
             }
             veht = new ImageIcon(vehh.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH));
               
