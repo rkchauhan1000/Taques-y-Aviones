@@ -20,18 +20,30 @@ public class Persona implements Serializable{
     ArrayList<Object> compras = new ArrayList<>();
     
     ArrayList<partidas> bat = new ArrayList<>();
-            
+     /**Ccostructor
+      * 
+      * @param Nombre 
+      */       
     public Persona(String Nombre){
         nombre=Nombre;
         oro=50;
         numVehiculos=0;
 
     }
+    /**aumenta el oro
+     * 
+     * @param aume
+     * @return 
+     */
     public int Oro(int aume){
         oro=oro+aume;
         System.out.print("Oro: ");
         return oro;
     }
+    /**reduce el oro
+     * 
+     * @param precio 
+     */
     public void Compra(int precio){
         oro = oro-precio;
     }
@@ -44,6 +56,12 @@ public class Persona implements Serializable{
             System.out.println("Ya tines un nombre agregado");
         }
     }
+    /**Crea un nuevo vehiculo
+     * 
+     * @param tipo
+     * @param icono
+     * @param nick 
+     */
     public void nuevoVehiculo(int tipo,int icono, String nick){
         
         if(tipo==1){
@@ -65,6 +83,9 @@ public class Persona implements Serializable{
         numVehiculos++;
         
     }
+    /**MUestra los vehiculos en la terminal
+     * 
+     */
     public void verVeh(){
         System.out.println("vehiculos");
         for(int i = 0; i<vehiculo.size();i++){

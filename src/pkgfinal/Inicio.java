@@ -11,13 +11,12 @@ import javax.swing.ImageIcon;
 
 public class Inicio extends javax.swing.JFrame implements Serializable{
 
-
+/**
+ * ESTA ES LA VENTAN QUE SE HABRE AL INICIO
+ */
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //setSize(getToolkit().getScreenSize());
-        //jPanel1.setSize(getToolkit().getScreenSize());
-        //jLabel1.setSize(getToolkit().getScreenSize());
         
         ImageIcon pri = new ImageIcon("src/imagen/inicio.jpg");
         Icon iconopri = new ImageIcon(pri.getImage().getScaledInstance(getWidth(),getHeight(),Image.SCALE_SMOOTH));

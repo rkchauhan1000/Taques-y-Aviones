@@ -42,7 +42,10 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
     double danioooo;
     String escena;
     int dadode6, dadode100, dadode4;
-    
+    /**Constructor de tablero y botones
+     * 
+     * 
+     */
     public Tablero() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -128,6 +131,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         versus=p1.tipoj;
         
     }
+    /**Evalua las ondicion de los vehiculos para determinar si pierden
+     * 
+     */
     private void Evaluar(){
         if(versus==true){
         
@@ -177,6 +183,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
 
     }
+    /**Define quien empieza primero
+     * 
+     */
     private void setTurno(){
         int t= (int) (Math.random()+10);
         if(t<5){
@@ -185,6 +194,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             turno=false;
         }
     }
+    /**analiza quien tiene el siguiente turno
+     * 
+     */
     private void turno(){
         if(versus==true){
                 if(turno==true){
@@ -215,8 +227,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
         
     }
-        
-    
+     /**Muestra las vidad de los vehiculos
+      * 
+      */   
     private void estado(){
         jTextField15.setText(Integer.toString(en.rev[0].vida));
         jTextField16.setText(Integer.toString(en.rev[1].vida));
@@ -225,6 +238,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         jTextField19.setText(Integer.toString(p1.v3.usuario.get(k).vehiculo.get(b-1).HP));
         jTextField20.setText(Integer.toString(p1.v3.usuario.get(k).vehiculo.get(c-1).HP));
     }
+    /**Ventana del tamino del tablero y sus botones
+     * 
+     */
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
             tamanio(4, 4);
@@ -246,7 +262,11 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         });
         
     }
-    
+    /**Crea el tablero con sus parametros
+     * 
+     * @param largo
+     * @param alto 
+     */
     private void tamanio(int largo, int alto){
         jPanel2.removeAll();
         this.largo=largo;
@@ -262,7 +282,11 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         
     }
     
-        
+     /**genera el tablero y los agrega al panel
+      * 
+      * @param h
+      * @param v 
+      */   
     private void generarTablero(int h,int v) {
         tablero = new JButton[h][v];
         juego = new int[h][v];
@@ -311,7 +335,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         
         Tablero();
     }
-           
+     /**muestra un array del tablero
+      * 
+      */      
     private void Tablero() {
         
             for (int fila = 0; fila < largo; fila++) {
@@ -320,7 +346,10 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
                 System.out.print(juego[fila][columna] + ", ");
             }
         }
-    }    
+    } 
+    /**le asigna las acciones a las piezas segun sea su tipo
+     * 
+     */
     private class Pieza implements ActionListener {
 
         int vidaa=3;
@@ -390,13 +419,20 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
                 }
             }
         }
+        /**analiza las vidas
+         * 
+         * @param fila1
+         * @param columna 
+         */
         private void vidas(int fila1, int columna){
             if(vidaa<=0){
                 juego[fila1][columna] = 1;
                 tablero[fila1][columna].setBackground(Color.ORANGE);
             }else{}
         }
-    }
+    }/**ventana de botones para cambiar de vehiculo
+     * 
+     */
     private void botonCambiar(){
             if(p1.v3.usuario.get(k).vehiculo.get(a-1).HP>0){
                 p2.jButton1.setText(p1.v3.usuario.get(k).vehiculo.get(a-1).nickName);
@@ -440,6 +476,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             }
             else{}
     }
+    /**muestra los botone de los vehiculos que aun siguen con vida
+     * 
+     */
     private void VerificacionVida(){
         p2.jButton1.setVisible(false);
         p2.jButton2.setVisible(false);
@@ -467,6 +506,12 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }else{}
         
     }
+    /**asigna posicion del jugador
+     * 
+     * @param tpp
+     * @param largo
+     * @param alto 
+     */
     private void posisiones(int tpp,int largo, int alto){
         // Enemigos
         
@@ -490,6 +535,12 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         
 
     }
+    /**asigna posisicon del enemigo
+     * 
+     * @param tpp
+     * @param largo
+     * @param alto 
+     */
     private void posicionEne1(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
@@ -503,7 +554,12 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             tablero[r1][r2].setIcon(en.rev[0].veht);
         }
     }
-        
+     /**asigna posisicon del enemigo
+      * 
+      * @param tpp
+      * @param largo
+      * @param alto 
+      */   
     private void posicionEne2(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
@@ -518,7 +574,12 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
         
     }
-       
+    /**asigna posisicon del enemigo
+     * 
+     * @param tpp
+     * @param largo
+     * @param alto 
+     */   
     private void posicionEne3(int tpp,int largo, int alto){
         int r1 = (int) ((Math.random()*largo));
         int r2 = (int) ((Math.random()*alto));
@@ -532,6 +593,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             tablero[r1][r2].setIcon(en.rev[2].veht);
         }
     }
+    /**hace el danio al jugador
+     * 
+     */
     private void AtacarJugador(){
         if(en.rev[0].vida>0){
                 Distancia(en.rev[0].fila, en.rev[0].columna, filaVehiculos, columnaVehiculo);
@@ -572,6 +636,14 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         Evaluar();
 
     }
+    /**Ataca al enemigo
+     * 
+     * @param e
+     * @param fe
+     * @param ce
+     * @param fv
+     * @param cv 
+     */
     private void AtacarEnemigo(int e, int fe, int ce, int fv, int cv){
         Distancia(fe, ce, fv, cv);
         Danio(e, total);
@@ -584,6 +656,10 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             //en.rev[e].vida=(int) (en.rev[e].vida-danioooo);
         }
     }
+    /**Define eldanio maximo
+     * 
+     * @param E 
+     */
     private void DanioEn(int E){
         Ataque=en.rev[E].danyo;
         Defensa=(int) p1.v3.usuario.get(k).vehiculo.get(z).defensa;
@@ -591,6 +667,11 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         
         danioooo = ((Ataque + (Ataque*((porcentaje)-(0.04*total))))-Defensa);
     }
+    /**define el danio hacia el jugador
+     * 
+     * @param E
+     * @param d 
+     */
     private void Danio(int E,long d){
         
         dado2();
@@ -599,7 +680,13 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         porcentaje= (0.01*dadode100);
         
         danioooo = ((Ataque + (Ataque*((porcentaje)-(0.04*total))))-Defensa);
-    }
+    }/**Analiza la distancia para restatr al ataque
+     * 
+     * @param fe
+     * @param ce
+     * @param fv
+     * @param cv 
+     */
     private void Distancia(int fe, int ce, int fv, int cv){
         int hor=ce-cv;
         int ver=fe-fv;
@@ -613,7 +700,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
         total= hor + ver;
     }
-        
+    /**dado
+     * 
+     */    
     private void dado1 (){
         
         for(int i=0;i<25;i++){
@@ -622,6 +711,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
         
     }
+    /**dado
+     * 
+     */
     private void dado2 (){
         
         for(int i=0;i<25;i++){
@@ -630,6 +722,9 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }
         
     }
+    /**dado
+     * 
+     */
     private void dado3 (){
         
         for(int i=0;i<25;i++){
@@ -937,7 +1032,7 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         // TODO add your handling code here:
         ob.removerTabla();
         for(int i=0;i<p1.v3.usuario.get(k).compras.size();i++){
-            ob.agregarNombre(i+1, p1.v3.usuario.get(k).compras.get(i).nombre);
+            //ob.agregarNombre(i+1, p1.v3.usuario.get(k).compras.get(i).nombre);
         }
         ob.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed

@@ -27,7 +27,10 @@ public class Tienda extends javax.swing.JFrame implements Serializable{
     int tipo;
     DefaultTableModel modelo2 = new DefaultTableModel();
     TableRowSorter<TableModel> name2 = new TableRowSorter<TableModel>(modelo2);
-    
+    /**cosntructor
+     * se crean los suministro iniciales
+     * botones y texto
+     */
     public Tienda() {
         this.setLayout(null);
         this.setLocationRelativeTo(null);

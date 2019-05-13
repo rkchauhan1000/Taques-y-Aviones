@@ -44,7 +44,11 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
     File reportVehiculos = new File("Reporte_Vehiculos.html");
     File reports = new File("Reporte_Jugadores.html");
     
-    
+    /**inicializa los modelos
+     * botones
+     * y la tabla
+     * 
+     */
     public Reportes() {
         pos=1;
         initComponents();
@@ -75,20 +79,31 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         //modelo2.addColumn("Partidas");
         modelo4.addColumn("Fecha");
         modelo4.addColumn("Resultado");
+        jTable1.setRowSorter(name1);
         
     }
-    
+    /**
+     * agrega un nuevo usuario
+     * @param p 
+     */
     public void NuevoUsuario(Persona p){
         usuario.add(p);
         removerTabla();
         verNombre();
         pos++;  
     }
+    /**establece el nombre el jugador
+     * 
+     * @param name 
+     */
     public void setNombres(String name){
         user = new Persona(name);
         user.posicion=pos;
         NuevoUsuario(user);
     }
+    /**meustra nombres
+     * 
+     */
     public void verNombre (){
         for(int i = 0; i<usuario.size();i++){
             //System.out.println(i+": "+usuario.get(i).nombre);
@@ -102,7 +117,9 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             }
 
     }
-    
+    /**verifica si existen usuarios
+     * 
+     */
     public void verificacion(){
         if(usuario.size()==0){
             JOptionPane.showMessageDialog(null, "No Existe Ningun Usuario");
@@ -111,6 +128,10 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             existe = true;
         }
     }
+    /**verifica los vehiculos
+     * 
+     * @param j 
+     */
     public void verificacionVehiculos(int j){
         if(usuario.get(j).vehiculo.size()==0){
             JOptionPane.showMessageDialog(null, "No Existe Ningun vehiculo, Necesitas crear 3 Vehiculso");
@@ -124,7 +145,12 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         }else{
             existeVehiculos = true;
         }
-    }
+    }/**agrega datos a la tabla
+     * 
+     * @param ps
+     * @param Nombre
+     * @param numve 
+     */
     public void agregarNombre(int ps,String Nombre, int numve){
         String [] elementos = new String[3];
         elementos[0]=Integer.toString(ps);
@@ -132,7 +158,14 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         elementos[2]=Integer.toString(numve);
         modelo1.addRow(elementos);
         jTable1.setModel(modelo1);
-    }
+    }/**agrega datos a la tabla
+     * 
+     * @param n
+     * @param Nick
+     * @param partidas
+     * @param ganados
+     * @param destruidos 
+     */
     public void agregarTodo(String n,String Nick,String partidas, String ganados, String destruidos){
         String [] elementos = new String[5];
         elementos[0]=n;
@@ -143,7 +176,12 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         
         modelo2.addRow(elementos);
         jTable1.setModel(modelo2);
+        jTable1.setRowSorter(name2);
     }
+    /**agrega datos a la tabla
+     * 
+     */
+     
     public void agregarTodos(String Nombre,String Nick,String partidas, String ganados, String destruidos){
         String [] elementos = new String[5];
         elementos[0]=Nombre;
@@ -154,14 +192,23 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         
         modelo2.addRow(elementos);
         jTable1.setModel(modelo2);
+        jTable1.setRowSorter(name2);
     }
+    /**LImpia la tabla
+     * 
+     */
     public void removerTabla(){
         System.out.println(jTable1.getRowCount());
         for(int i=0;i<jTable1.getRowCount();i++){
             modelo1.removeRow(i);
             i-=1;
         }
-    }
+    } /**agrega los vehiculos
+     * 
+     * @param n
+     * @param nombre
+     * @param s 
+     */
     public void agregarVehiculo(int n, String nombre,Icon s){
         Object [] elementos = new Object[3];
         elementos[0]=Integer.toString(n);
@@ -169,7 +216,11 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         elementos[2]= new JLabel(s);
         modelo3.addRow(elementos);
         jTable1.setModel(modelo3);
+        jTable1.setRowSorter(name3);
     }
+    /**muestra los vehiculos
+     * 
+     */
     public void listarVehiculos(){
         nn=1;
         removerTabla();
@@ -180,6 +231,9 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             }
         }
     }
+    /**genera un html de perosonas
+     * 
+     */
     private void html1(){
         try{
             FileWriter jugadores= new FileWriter(reportPersonas);
@@ -205,6 +259,9 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             //return true;
         }
     }
+        /**genera un html de perosonas
+     * 
+     */
     private void html2(){
         try{
             FileWriter jugadores= new FileWriter(reportVehiculos);
@@ -230,6 +287,9 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             //return true;
         }
     }
+        /**genera un html de batallas
+     * 
+     */
     private void html3(){
         try{
             FileWriter jugadores= new FileWriter(reportbatallas);

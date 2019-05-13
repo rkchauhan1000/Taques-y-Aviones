@@ -31,14 +31,16 @@ public class Principal extends javax.swing.JFrame implements Serializable{
     Tienda v6 = new Tienda();
     ListPersonas v7 = new ListPersonas();
     crearArma v8 = new crearArma();
-    achivos arc = new achivos(" ");
     
     String vacio;
     int j1;
     int j2;
     int vv;
     boolean tipoj;
-
+/**inicializa los botones y disenia los mismos
+ * le da las acciones a los botones
+ * crea botones
+ */
     public Principal() {
         if(!carpeta1.exists()){
             carpeta1.mkdir();
@@ -145,6 +147,9 @@ public class Principal extends javax.swing.JFrame implements Serializable{
         //leerDATOS();
         v3.todNombres();
     }
+    /**Guardda los datos de archivos
+     * 
+     */
     public void guardarDatos(){
 
         try {
@@ -163,6 +168,9 @@ public class Principal extends javax.swing.JFrame implements Serializable{
             e.printStackTrace();
         }
     }
+    /**lee los datos del arichivo
+     * 
+     */
     public void leerDATOS(){
         
         try {
@@ -178,13 +186,17 @@ public class Principal extends javax.swing.JFrame implements Serializable{
             e.printStackTrace();
         }
     }
-    
+    /**inicializa las tres armas basicas
+     * 
+     */
     private void treArmas(){
         v4.listarArmas(v3.todasArmas.get(0).num, v3.todasArmas.get(0).nombre, v3.todasArmas.get(0).aumento_ataque,v3.todasArmas.get(0).aumento_defensa);
         v4.listarArmas(v3.todasArmas.get(1).num, v3.todasArmas.get(1).nombre, v3.todasArmas.get(1).aumento_ataque,v3.todasArmas.get(1).aumento_defensa);
         v4.listarArmas(v3.todasArmas.get(2).num, v3.todasArmas.get(2).nombre, v3.todasArmas.get(2).aumento_ataque,v3.todasArmas.get(2).aumento_defensa);
     }
-    
+    /**musetra los datos del jugador
+     * 
+     */
     private void Datos(){
         if(v3.usuario.size()>0){
             jTextField1.setText(v3.usuario.get(j1).nombre);
