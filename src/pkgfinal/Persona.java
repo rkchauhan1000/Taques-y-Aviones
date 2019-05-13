@@ -19,6 +19,7 @@ public class Persona implements Serializable{
     //Arraylist de objetos
     ArrayList<Object> compras = new ArrayList<>();
     
+    ArrayList<partidas> bat = new ArrayList<>();
             
     public Persona(String Nombre){
         nombre=Nombre;
@@ -69,6 +70,9 @@ public class Persona implements Serializable{
         for(int i = 0; i<vehiculo.size();i++){
             System.out.println(i+": "+vehiculo.get(i).nickName);
         }
+    }
+    public void setRes(String escenario, String fecha, boolean resultaados){
+        bat.add(new partidas(escenario,fecha,resultaados));   
     }
 }
 

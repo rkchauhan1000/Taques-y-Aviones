@@ -23,9 +23,10 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
     TableRowSorter<TableModel> name2 = new TableRowSorter<TableModel>(modelo2);
     DefaultTableModel modelo3 = new DefaultTableModel();
     TableRowSorter<TableModel> name3 = new TableRowSorter<TableModel>(modelo3);
-    
+    DefaultTableModel modelo4 = new DefaultTableModel();
+    TableRowSorter<TableModel> name4 = new TableRowSorter<TableModel>(modelo3);
     int pos;
-    int nn;
+    int nn,h;
     Persona user;
     ArrayList<Persona> usuario= new ArrayList<>();
     ArrayList<Armas> todasArmas = new ArrayList<>();
@@ -39,6 +40,9 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
     html ht = new html();
             
     File reportPersonas = new File("Reporte_Jugadores.html");
+    File reportbatallas = new File("Reporte_Batallas.html");
+    File reportVehiculos = new File("Reporte_Vehiculos.html");
+    File reports = new File("Reporte_Jugadores.html");
     
     
     public Reportes() {
@@ -57,13 +61,20 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         modelo2.addColumn("No.");
         modelo2.addColumn("Usuario");
         modelo2.addColumn("Nick");
-        modelo2.addColumn("Partidas");
+        //modelo2.addColumn("Partidas");
         modelo2.addColumn("Ganados");
         modelo2.addColumn("Destruidos");
         
         modelo3.addColumn("No.");
         modelo3.addColumn("Nombre");
         modelo3.addColumn("Icono");
+        
+        modelo4.addColumn("No.");
+        modelo4.addColumn("Usuario");
+        modelo4.addColumn("Escenario");
+        //modelo2.addColumn("Partidas");
+        modelo4.addColumn("Fecha");
+        modelo4.addColumn("Resultado");
         
     }
     
@@ -122,7 +133,18 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         modelo1.addRow(elementos);
         jTable1.setModel(modelo1);
     }
-    public void agregarTodo(String Nombre,String Nick,String partidas, String ganados, String destruidos){
+    public void agregarTodo(String n,String Nick,String partidas, String ganados, String destruidos){
+        String [] elementos = new String[5];
+        elementos[0]=n;
+        elementos[1]=Nick;
+        elementos[2]=partidas;
+        elementos[3]= ganados;
+        elementos[4]=  destruidos;
+        
+        modelo2.addRow(elementos);
+        jTable1.setModel(modelo2);
+    }
+    public void agregarTodos(String Nombre,String Nick,String partidas, String ganados, String destruidos){
         String [] elementos = new String[5];
         elementos[0]=Nombre;
         elementos[1]=Nick;
@@ -163,13 +185,66 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
             FileWriter jugadores= new FileWriter(reportPersonas);
             BufferedWriter bw = new BufferedWriter(jugadores);
             ht.generarEncabezado("Jugadores");
-            ht.pestania("No.", "Nombre", "No. Vehiculos");
+            ht.pestania("No.", "Nombre", "No. Vehiculos","","");
             bw.write(ht.salida);
             bw.newLine();
             for(int i=0;i<usuario.size();i++){
-                ht.generarFilaHTML(Integer.toString(i+1), usuario.get(i).nombre, Integer.toString(usuario.get(i).numVehiculos));
+                ht.generarFilaHTML(Integer.toString(i+1), usuario.get(i).nombre, Integer.toString(usuario.get(i).numVehiculos),"","");
                 bw.write(ht.filaText);
                 bw.newLine();
+            }
+            ht.generarcola();
+            bw.write(ht.cola);
+            bw.newLine();
+
+            bw.close();
+            jugadores.close();
+        }catch(IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            //return true;
+        }
+    }
+    private void html2(){
+        try{
+            FileWriter jugadores= new FileWriter(reportVehiculos);
+            BufferedWriter bw = new BufferedWriter(jugadores);
+            ht.generarEncabezado("Jugadores");
+            ht.pestania("No.", "Nombre", "No. Vehiculos","","");
+            bw.write(ht.salida);
+            bw.newLine();
+            for(int i=0;i<usuario.size();i++){
+                ht.generarFilaHTML(Integer.toString(i+1), usuario.get(i).nombre, Integer.toString(usuario.get(i).numVehiculos),"","");
+                bw.write(ht.filaText);
+                bw.newLine();
+            }
+            ht.generarcola();
+            bw.write(ht.cola);
+            bw.newLine();
+
+            bw.close();
+            jugadores.close();
+        }catch(IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            //return true;
+        }
+    }
+    private void html3(){
+        try{
+            FileWriter jugadores= new FileWriter(reportbatallas);
+            BufferedWriter bw = new BufferedWriter(jugadores);
+            ht.generarEncabezado("Batallas");
+            ht.pestania("No.", "Jugador", "Escenario","Fecha","Resultados");
+            bw.write(ht.salida);
+            bw.newLine();
+            for(int i=0;i<usuario.size();i++){
+                for(int j=0; j<usuario.get(i).bat.size();j++){
+                ht.generarFilaHTML(Integer.toString(i+1), usuario.get(i).nombre, usuario.get(i).bat.get(j).escenario ,usuario.get(i).bat.get(j).fecha,usuario.get(i).bat.get(j).resul);
+                bw.write(ht.filaText);
+                bw.newLine(); 
+                }
+
             }
             ht.generarcola();
             bw.write(ht.cola);
@@ -193,6 +268,7 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -227,6 +303,14 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 570, -1, -1));
 
+        jButton3.setText("Batallas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
 
         pack();
@@ -235,18 +319,38 @@ public class Reportes extends javax.swing.JFrame implements Serializable {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         listarVehiculos();
+        h=1;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(h==2){
+            html3();
+        }else{
         html1();
-        
+        JOptionPane.showMessageDialog(null, "Se importo La tabla Actual");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        h=2;
+        int sd=1;
+        removerTabla();
+        for(int i=0; i<usuario.size();i++){
+            for(int j=0;j<usuario.get(i).bat.size();i++){
+                agregarTodo(Integer.toString(sd),usuario.get(i).nombre,usuario.get(i).bat.get(j).escenario, usuario.get(i).bat.get(j).fecha, usuario.get(i).bat.get(j).resul);
+                sd++;
+            }
+            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

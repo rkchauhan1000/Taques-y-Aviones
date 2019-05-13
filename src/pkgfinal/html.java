@@ -24,20 +24,24 @@ public class html implements Serializable{
         salida+="<tr>\n";
 
     }
-    public void pestania(String p1,String p2,String p3){
+    public void pestania(String p1,String p2,String p3,String p4, String p5){
         salida+="<td><strong>"+p1+"</strong></td>\n";
         salida+="<td><strong>"+p2+"</strong></td>\n";
         salida+="<td><strong>"+p3+"</strong></td>\n";
+        salida+="<td><strong>"+p4+"</strong></td>\n";
+         salida+="<td><strong>"+p5+"</strong></td>\n";
         salida+="</tr>";
         
     }
 
-    public void generarFilaHTML(String p1,String p2,String p3){
+    public void generarFilaHTML(String p1,String p2,String p3,String p4, String p5){
         filaText="";
         filaText="\n<tr>\n";
         filaText+="<td>"+p1+"</td>\n";
         filaText+="<td>"+p2+"</td>\n";
         filaText+="<td>"+p3+"</td>\n";
+        filaText+="<td>"+p4+"</td>\n";
+        filaText+="<td>"+p5+"</td>\n";
         filaText+="</tr>\n";
     }
     public void generarcola(){

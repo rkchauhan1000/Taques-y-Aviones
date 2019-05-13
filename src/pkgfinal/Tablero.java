@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
     Genera_Enemigos en= new Genera_Enemigos();
     cambiar p2 = new cambiar();
     aplicarocjetos ob = new aplicarocjetos();
-    
+    Date fecha = new Date();
     JFrame tamanyo= new JFrame();
     JPanel sobre = new JPanel();
     JButton tm1 = new JButton();
@@ -39,7 +40,7 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
     boolean turno, versus;
     int a, b, c, y, x, z, filaVehiculos, columnaVehiculo, vidacas, k, k1,k2;
     double danioooo;
-    
+    String escena;
     int dadode6, dadode100, dadode4;
     
     public Tablero() {
@@ -134,12 +135,16 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
             //jTextArea1.setText("Todos tus Enemigos de"+p1.v3.usuario.get(k1).nombre+"has sido eliminados ");
             JOptionPane.showMessageDialog(null, "Todos tus Enemigos de"+p1.v3.usuario.get(k1).nombre+"has sido eliminados ");
             turno=true;
+            p1.v3.usuario.get(k1).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), false);
+            p1.v3.usuario.get(k2).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), true);
             this.setVisible(false);
             p1.setVisible(true);
             
             }else if (p1.v3.usuario.get(k2).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(k2).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(k2).vehiculo.get(c-1).HP<=0){
              //jTextArea1.setText("Todos tus Enemigos de"+p1.v3.usuario.get(k2).nombre+"has sido eliminados ");
              JOptionPane.showMessageDialog(null, "Todos tus Enemigos de"+p1.v3.usuario.get(k2).nombre+"has sido eliminados ");
+             p1.v3.usuario.get(k2).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), false);
+             p1.v3.usuario.get(k1).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), true);
              turno=true;
              this.setVisible(false);
              p1.setVisible(true);
@@ -153,6 +158,7 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
            if(p1.v3.usuario.get(k).vehiculo.get(a-1).HP<=0 && p1.v3.usuario.get(k).vehiculo.get(b-1).HP<=0 && p1.v3.usuario.get(k).vehiculo.get(c-1).HP<=0){
             //jTextArea1.setText("Todos tus vehiculos has sido eliminados, PERDISTE ");
             JOptionPane.showMessageDialog(null, "Todos tus vehiculos has sido eliminados, PERDISTE");
+            p1.v3.usuario.get(k).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), false);
             turno=true;
             this.setVisible(false);
             p1.setVisible(true);
@@ -160,6 +166,7 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
         }else if (en.rev[0].vida<=0 && en.rev[1].vida<=0 && en.rev[2].vida<=0){
              //jTextArea1.setText("Todos tus Enemigos has sido eliminados ");
              JOptionPane.showMessageDialog(null, "Todos tus Enemigos has sido eliminados, GANASTE");
+             p1.v3.usuario.get(k).setRes(escena, Integer.toString(fecha.getDay())+Integer.toString(fecha.getMonth()), true);
              turno=true;
              this.setVisible(false);
              p1.setVisible(true);
@@ -221,16 +228,19 @@ public class Tablero extends javax.swing.JFrame implements Serializable{
     private void ventanatamnio(){
         tm1.addActionListener((e) -> {
             tamanio(4, 4);
+            escena="4x4";
             this.setVisible(true);
             tamanyo.setVisible(false);
         });
         tm2.addActionListener((e) -> {
             tamanio(6, 4);
+            escena="6x4";
             this.setVisible(true);
             tamanyo.setVisible(false);
         });
         tm3.addActionListener((e) -> {
             tamanio(8, 9);
+            escena="8x9";
             this.setVisible(true);
             tamanyo.setVisible(false);
         });

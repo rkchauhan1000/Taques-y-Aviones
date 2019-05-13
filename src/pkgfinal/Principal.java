@@ -166,10 +166,14 @@ public class Principal extends javax.swing.JFrame implements Serializable{
     public void leerDATOS(){
         
         try {
-            ObjectInputStream ver_jugadores = new ObjectInputStream(new FileInputStream(usuarios));
-            
-            v3.usuario = (ArrayList<Persona>) ver_jugadores.readObject();
-            ver_jugadores.close();
+             if(!usuarios.exists()){
+                
+            }else{
+                ObjectInputStream ver_jugadores = new ObjectInputStream(new FileInputStream(usuarios));
+                v3.usuario = (ArrayList<Persona>) ver_jugadores.readObject();
+                ver_jugadores.close();
+             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
