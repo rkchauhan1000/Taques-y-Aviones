@@ -4,14 +4,25 @@ package pkgfinal;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import pkgfinal.Persona;
-public class Principal extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame implements Serializable{
     
+    File carpeta1 = new File("Datos");
+    File usuarios = new File("Datos/jugadores.dat");
     Inicio v = new Inicio();
+    ObjectOutputStream jugadores;
     //Tablero v1 = new Tablero();
     ventanaingresos v2 = new ventanaingresos();
     Reportes v3 = new Reportes();
@@ -29,6 +40,9 @@ public class Principal extends javax.swing.JFrame {
     boolean tipoj;
 
     public Principal() {
+        if(!carpeta1.exists()){
+            carpeta1.mkdir();
+        }else{}
         //v6.setVisible(true);
         vacio="";
         j1=0;
@@ -48,7 +62,9 @@ public class Principal extends javax.swing.JFrame {
             v3.setNombres(v2.jTextField2.getText());
             v2.setVisible(false);
             v2.limpiar();
+            v3.todNombres();
             Datos();
+            guardarDatos();
         });
         //jMenuBar1.
         v4.jButton9.addActionListener((ActionEvent ec) -> {
@@ -62,11 +78,14 @@ public class Principal extends javax.swing.JFrame {
         v4.repaint();
         v4.jTextField1.setText("");
         v4.jTextField2.setText("");
+        guardarDatos();
+        v3.todNombres();
         });
         
         v.jButton1.addActionListener((el) -> {
                 setVisible(true);
                 v.setVisible(false);
+                leerDATOS();
         });
         v.jButton2.addActionListener((en) -> {
                System.exit(0);
@@ -122,21 +141,45 @@ public class Principal extends javax.swing.JFrame {
         });
             
         treArmas();
-        
+        v3.todNombres();
+        //leerDATOS();
+        v3.todNombres();
     }
+    public void guardarDatos(){
+
+        try {
+            if(!usuarios.exists()){
+                jugadores = new ObjectOutputStream(new FileOutputStream(usuarios));
+            }else{}
+            jugadores = new ObjectOutputStream(new FileOutputStream(usuarios));
+            jugadores.writeObject(v3.usuario);
+            jugadores.close();
+            
+
+
+            v3.todNombres();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void leerDATOS(){
+        
+        try {
+            ObjectInputStream ver_jugadores = new ObjectInputStream(new FileInputStream(usuarios));
+            
+            v3.usuario = (ArrayList<Persona>) ver_jugadores.readObject();
+            ver_jugadores.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void treArmas(){
         v4.listarArmas(v3.todasArmas.get(0).num, v3.todasArmas.get(0).nombre, v3.todasArmas.get(0).aumento_ataque,v3.todasArmas.get(0).aumento_defensa);
         v4.listarArmas(v3.todasArmas.get(1).num, v3.todasArmas.get(1).nombre, v3.todasArmas.get(1).aumento_ataque,v3.todasArmas.get(1).aumento_defensa);
         v4.listarArmas(v3.todasArmas.get(2).num, v3.todasArmas.get(2).nombre, v3.todasArmas.get(2).aumento_ataque,v3.todasArmas.get(2).aumento_defensa);
     }
-    private class accion implements ActionListener{
-    @Override
-    public void actionPerformed(ActionEvent click){
- 
-        Escenario escena =new Escenario();
-        escena.Escena.setVisible(true);
-    }
-}
     
     private void Datos(){
         if(v3.usuario.size()>0){
@@ -241,7 +284,7 @@ public class Principal extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(153, 255, 153));
         jButton6.setFont(new java.awt.Font("Kalimati", 2, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 102, 102));
-        jButton6.setText("REPORETES");
+        jButton6.setText("REPORTES");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -363,6 +406,7 @@ public class Principal extends javax.swing.JFrame {
         for(int i=0;i<v3.usuario.size();i++){
             v7.agregarNombre(v3.usuario.get(i).posicion, v3.usuario.get(i).nombre);
         }
+        Datos();
         v7.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

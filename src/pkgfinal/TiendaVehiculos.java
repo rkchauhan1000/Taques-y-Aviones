@@ -1,11 +1,12 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class TiendaVehiculos extends javax.swing.JFrame {
+public class TiendaVehiculos extends javax.swing.JFrame implements Serializable{
 
     Vehiculos [] vehicuNuevos = new Vehiculos[5];
     DefaultTableModel modelo1 = new DefaultTableModel();
@@ -15,7 +16,8 @@ public class TiendaVehiculos extends javax.swing.JFrame {
     
     public TiendaVehiculos() {
         initComponents();
-        setLayout(null);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
         
         vehicuNuevos[0]=new Tanque();
         vehicuNuevos[0].imagen(0);

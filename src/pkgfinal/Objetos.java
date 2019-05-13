@@ -1,7 +1,9 @@
 
 package pkgfinal;
 
-public class Objetos {
+import java.io.Serializable;
+
+public class Objetos implements Serializable {
     
     int tipo;
     int precio;

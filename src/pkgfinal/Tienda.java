@@ -2,13 +2,14 @@
 package pkgfinal;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Tienda extends javax.swing.JFrame {
+public class Tienda extends javax.swing.JFrame implements Serializable{
 
     Objetos [] suministro=new Objetos[4];
     TiendaVehiculos ti1= new TiendaVehiculos();
@@ -28,7 +29,8 @@ public class Tienda extends javax.swing.JFrame {
     TableRowSorter<TableModel> name2 = new TableRowSorter<TableModel>(modelo2);
     
     public Tienda() {
-        setLocationRelativeTo(null);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
         //torre = new ImageIcon("src/imagen/tienda1.gif");
         //iconoTorre = new ImageIcon(torre.getImage().getScaledInstance(getWidth(),getHeight(), Image.SCALE_SMOOTH));
         //jLabel1.setIcon(iconoTorre);

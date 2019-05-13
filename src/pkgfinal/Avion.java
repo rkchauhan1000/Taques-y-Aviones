@@ -3,10 +3,11 @@ package pkgfinal;
 //Vehiculo de Tipo avion que hereda de Vehiculos
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class Avion extends Vehiculos {
+public class Avion extends Vehiculos implements Serializable {
 
 
 

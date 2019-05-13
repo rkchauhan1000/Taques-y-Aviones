@@ -1,8 +1,10 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 
-public class ventanaingresos extends javax.swing.JFrame {
+
+public class ventanaingresos extends javax.swing.JFrame implements Serializable{
 
 
     public ventanaingresos() {

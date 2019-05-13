@@ -1,11 +1,14 @@
 
 package pkgfinal;
 
-public class crearArma extends javax.swing.JFrame {
+import java.io.Serializable;
+
+public class crearArma extends javax.swing.JFrame implements Serializable{
 
     public crearArma() {
         initComponents();
-        setLayout(null);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +24,7 @@ public class crearArma extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

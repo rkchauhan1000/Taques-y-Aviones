@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class Tablero extends javax.swing.JFrame {
+public class Tablero extends javax.swing.JFrame implements Serializable{
 
     Principal p1 = new Principal();
     JButton tablero[][] = null;

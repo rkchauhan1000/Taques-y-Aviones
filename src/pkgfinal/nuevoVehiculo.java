@@ -2,13 +2,14 @@
 package pkgfinal;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class nuevoVehiculo extends javax.swing.JFrame {
+public class nuevoVehiculo extends javax.swing.JFrame implements Serializable {
 
     ImageIcon icon1;
     ImageIcon icon2;

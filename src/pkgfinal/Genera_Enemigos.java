@@ -2,9 +2,10 @@
 package pkgfinal;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
-public class Genera_Enemigos {
+public class Genera_Enemigos implements Serializable{
 
     //Tamanu=yo 3 para crear los enemigos
     Enemigo [] rev = new Enemigo[3];

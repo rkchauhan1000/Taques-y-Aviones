@@ -1,11 +1,12 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public abstract class Vehiculos {
+public abstract class Vehiculos implements Serializable{
    
     ArrayList<Armas> arma = new ArrayList<>();
     

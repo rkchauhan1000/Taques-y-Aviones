@@ -1,10 +1,11 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Persona {
+public class Persona implements Serializable{
     
     String nombre;
     int oro;

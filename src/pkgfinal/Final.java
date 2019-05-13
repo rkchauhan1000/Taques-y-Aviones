@@ -1,7 +1,9 @@
 
 package pkgfinal;
 
-public class Final {
+import java.io.Serializable;
+
+public class Final implements Serializable{
 
     public static void main(String[] args) {
 

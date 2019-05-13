@@ -1,9 +1,10 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Armas extends javax.swing.JFrame {
+public class Armas extends javax.swing.JFrame implements Serializable {
 
     int aumento_ataque;
     int aumento_defensa;

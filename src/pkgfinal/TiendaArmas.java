@@ -1,12 +1,13 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class TiendaArmas extends javax.swing.JFrame {
+public class TiendaArmas extends javax.swing.JFrame implements Serializable{
 
     DefaultTableModel modelo1 = new DefaultTableModel();
     TableRowSorter<TableModel> name1 = new TableRowSorter<TableModel>(modelo1);
@@ -18,6 +19,7 @@ public class TiendaArmas extends javax.swing.JFrame {
     public TiendaArmas() {
         initComponents();
         this.setLayout(null);
+        this.setLocationRelativeTo(null);
         modelo1.addColumn("No.");
         modelo1.addColumn("Nombre");
         modelo1.addColumn("Precio");

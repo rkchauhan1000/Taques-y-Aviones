@@ -1,10 +1,11 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-public class Enemigo {
+public class Enemigo implements Serializable{
 
     int vida;
     int defensa;

@@ -1,6 +1,11 @@
 
 package pkgfinal;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -10,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class Reportes extends javax.swing.JFrame {
+public class Reportes extends javax.swing.JFrame implements Serializable {
 
     DefaultTableModel modelo1 = new DefaultTableModel();
     TableRowSorter<TableModel> name1 = new TableRowSorter<TableModel>(modelo1);
@@ -31,7 +36,10 @@ public class Reportes extends javax.swing.JFrame {
     
     boolean existe;
     boolean existeVehiculos;
+    html ht = new html();
             
+    File reportPersonas = new File("Reporte_Jugadores.html");
+    
     
     public Reportes() {
         pos=1;
@@ -75,6 +83,13 @@ public class Reportes extends javax.swing.JFrame {
             //System.out.println(i+": "+usuario.get(i).nombre);
             agregarNombre(usuario.get(i).posicion,usuario.get(i).nombre,usuario.get(i).numVehiculos);
         }
+                    
+    }
+    public void todNombres(){
+    for(int i=0;i<usuario.size();i++){
+                System.out.println(i+"Nombre: "+usuario.get(i).nombre);
+            }
+
     }
     
     public void verificacion(){
@@ -143,6 +158,31 @@ public class Reportes extends javax.swing.JFrame {
             }
         }
     }
+    private void html1(){
+        try{
+            FileWriter jugadores= new FileWriter(reportPersonas);
+            BufferedWriter bw = new BufferedWriter(jugadores);
+            ht.generarEncabezado("Jugadores");
+            ht.pestania("No.", "Nombre", "No. Vehiculos");
+            bw.write(ht.salida);
+            bw.newLine();
+            for(int i=0;i<usuario.size();i++){
+                ht.generarFilaHTML(Integer.toString(i+1), usuario.get(i).nombre, Integer.toString(usuario.get(i).numVehiculos));
+                bw.write(ht.filaText);
+                bw.newLine();
+            }
+            ht.generarcola();
+            bw.write(ht.cola);
+            bw.newLine();
+
+            bw.close();
+            jugadores.close();
+        }catch(IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            //return true;
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -152,6 +192,7 @@ public class Reportes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -178,6 +219,14 @@ public class Reportes extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
 
+        jButton2.setText("Importar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 570, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
 
         pack();
@@ -188,9 +237,16 @@ public class Reportes extends javax.swing.JFrame {
         listarVehiculos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        html1();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

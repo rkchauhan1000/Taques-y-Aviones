@@ -1,7 +1,9 @@
 
 package pkgfinal;
         
-public class hilo implements Runnable{
+import java.io.Serializable;
+
+public class hilo implements Runnable, Serializable{
     
     private Tablero tab = new Tablero();
     

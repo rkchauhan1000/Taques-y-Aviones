@@ -1,57 +1,49 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 
-public class html {
+
+public class html implements Serializable{
     
+    int No;
     String usuarios;
     String vehiculos;
+    String salida;
+    String filaText;
+    String cola;
     
-    
-    private String nombre;
-    private String apellido;
-    private int carne;
-    private int zona;
-    private int falta;
-    private static final int proyecto = 40;
-    private boolean posibilidadGanar;
-
-
-
-    public html(String nom, String per, int carn, int zon){
-        nombre = nom;
-        apellido = per;
-        carne =carn;
-        zona = zon;
-        posibilidadGanar = true;
-        if (zona >60)
-            falta = 0;
-        else{
-            falta = 61 - zona;
-            if (falta > proyecto)
-                posibilidadGanar = false;
-        }
-
+    public html(){
 
     }
 
-    public static String generarEncabezado(String titulo){
-        String salida = " <caption>Lista"+titulo+"</caption> \n<tr >";
-        salida+="<th>No.</th>";
-        salida+="<th>Nombre</th>";
-        salida+="<th>Vehiculos</th>";
-        //salida+="<th>Falto</th>";
-        salida+="</tr>\n";
-        return salida;
+    public void generarEncabezado(String titulo){
+        salida = "<html>\n";
+        salida+="<head><title>"+titulo+"</title></head>\n"+"<body>\n";
+        salida+="<h1>"+titulo+"</h1>\n"+"<table>\n";
+        salida+="<tr>\n";
+
+    }
+    public void pestania(String p1,String p2,String p3){
+        salida+="<td><strong>"+p1+"</strong></td>\n";
+        salida+="<td><strong>"+p2+"</strong></td>\n";
+        salida+="<td><strong>"+p3+"</strong></td>\n";
+        salida+="</tr>";
+        
     }
 
-    public String generarFilaHTML(){
-        String salida = "<tr class=\""+(posibilidadGanar?"correct":"wrong")+"\">";
-            salida+="<td>"+carne+"</td>";
-            salida+="<td>"+nombre +" "+apellido+"</td>";
-            salida+="<td>"+zona+"</td>";
-            //salida+="<td>"+falta+"</td>";
-        salida +="</tr>\n";
-        return  salida;
+    public void generarFilaHTML(String p1,String p2,String p3){
+        filaText="";
+        filaText="\n<tr>\n";
+        filaText+="<td>"+p1+"</td>\n";
+        filaText+="<td>"+p2+"</td>\n";
+        filaText+="<td>"+p3+"</td>\n";
+        filaText+="</tr>\n";
+    }
+    public void generarcola(){
+        cola="\n</table>\n";
+        cola+="</body>\n";
+        cola+="</html>\n";
+        
     }
 }

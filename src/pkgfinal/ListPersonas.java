@@ -1,11 +1,12 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class ListPersonas extends javax.swing.JFrame {
+public class ListPersonas extends javax.swing.JFrame implements Serializable{
 
     DefaultTableModel modelo1 = new DefaultTableModel();
     TableRowSorter<TableModel> name1 = new TableRowSorter<TableModel>(modelo1);

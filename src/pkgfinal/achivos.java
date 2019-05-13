@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public final class achivos {
+public final class achivos implements Serializable{
     String cadena;
     Reportes ar = new Reportes();
     

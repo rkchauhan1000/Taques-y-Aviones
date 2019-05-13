@@ -4,11 +4,12 @@ package pkgfinal;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 
-public class Inicio extends javax.swing.JFrame {
+public class Inicio extends javax.swing.JFrame implements Serializable{
 
 
     public Inicio() {

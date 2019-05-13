@@ -1,17 +1,19 @@
 
 package pkgfinal;
 
+import java.io.Serializable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class aplicarocjetos extends javax.swing.JFrame {
+public class aplicarocjetos extends javax.swing.JFrame implements Serializable{
     DefaultTableModel modelo1 = new DefaultTableModel();
     TableRowSorter<TableModel> name1 = new TableRowSorter<TableModel>(modelo1);
 
     public aplicarocjetos() {
         initComponents();
-        setLayout(null);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
         modelo1.addColumn("No.");
         modelo1.addColumn("Nombre");
         //modelo1.addColumn("No. Vehiculos");
@@ -41,7 +43,7 @@ public class aplicarocjetos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
